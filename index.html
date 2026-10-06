@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>khanhwashere<3</title>
+<title>Khanhwashere<3</title>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -78,7 +78,7 @@ h3{margin:0 0 8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;op
 .box h2{margin:0 0 14px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);text-align:center}
 textarea{width:100%;height:240px;border-radius:14px;padding:12px;background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--ink);font:600 13px Nunito,sans-serif;resize:none}
 .x{position:absolute;top:12px;right:16px;background:none;font-size:20px;opacity:.6}
-.tabs{display:flex;gap:6px;padding:12px 20px 0}.tab{flex:1;padding:10px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-weight:800;font-size:13px;transition:.2s}.tab.on{background:linear-gradient(135deg,var(--gold2),#e8912d);color:#3b2400;border-color:transparent}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:12px 20px 0}.tab{padding:7px 2px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-weight:800;font-size:11px;line-height:1.25;transition:.2s}.tab span{display:block;font-size:18px}.tab.on{background:linear-gradient(135deg,var(--gold2),#e8912d);color:#3b2400;border-color:transparent}
 #wpanel{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:15}
 #ww{position:relative;width:420px;height:420px}
 .st{width:30px;height:30px;border-radius:50%;background:var(--glass);border:1px solid var(--line);font-size:18px;font-weight:900}.st:hover{border-color:var(--gold)}
@@ -95,12 +95,45 @@ body.wheel #wpanel{display:flex}body.wheel #nodes,body.wheel #hint,body.wheel #n
 .wb{display:block;width:100%;padding:13px;border-radius:14px;font-weight:800;margin-top:8px}
 .wb.a{background:var(--glass);border:1px solid var(--line)}.wb.b{background:linear-gradient(135deg,#fb3a5d,#e11d48)}
 @media(max-width:760px){body{flex-direction:column}#side{width:100%;height:42%}.brand{padding:10px 16px}.scroll{padding:10px 16px}}
+body.race #nodes,body.race #hint,body.race #nd,body.race #ov,body.race #patsec,body.race #slrow,body.gift #nodes,body.gift #hint,body.gift #nd,body.gift #ov,body.gift #patsec,body.gift #slrow{display:none}
+body.race #rpanel{display:block}body.gift #gpanel{display:grid}
+#rpanel{position:absolute;inset:0;display:none;overflow:hidden;z-index:15}
+#world{position:absolute;left:0;top:0;height:100%;will-change:transform;background:linear-gradient(#2f7d3a,#256b31)}
+#road{position:absolute;left:0;right:0;background-color:#3a3f4d;box-shadow:0 0 0 4px #e5e7eb,0 0 0 6px #111}
+.sl,.fl{position:absolute;background:repeating-conic-gradient(#fff 0 25%,#111 0 50%) 0 0/12px 12px}.sl{width:12px}.fl{width:24px}
+.car{position:absolute;left:0;top:0;will-change:transform}.car svg{width:100%;height:100%;display:block}
+.tg{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);padding:1px 5px;border-radius:6px;background:rgba(0,0,0,.62);color:#fff;font-weight:800;white-space:nowrap;line-height:1.3;margin-bottom:1px}
+.car.lead{z-index:30}.car.lead .tg{background:var(--gold);color:#3b2400}.car.win{z-index:40}.car.win .tg{background:var(--gold2);color:#3b2400}
+.tr{position:absolute;font-style:normal;font-size:26px;line-height:1}
+.sg{position:absolute;padding:3px 10px;border-radius:8px;background:#fff;color:#111;font-weight:900;font-size:12px;box-shadow:0 2px 6px #0006}
+#lb{position:absolute;right:14px;top:14px;z-index:6;background:rgba(5,8,20,.72);border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-width:180px;font-size:12px;font-weight:800;backdrop-filter:blur(6px)}
+#lb h4{margin:0 0 6px;font-size:11px;letter-spacing:.12em;color:var(--gold2)}#lb div{padding:2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}
+#cd{position:absolute;inset:0;display:grid;place-items:center;z-index:5;font-size:clamp(60px,14vw,150px);font-weight:900;color:#fff;text-shadow:0 0 40px var(--gold),0 8px 30px #000;pointer-events:none;opacity:0}
+#cd.pop{animation:cdp .8s ease-out}@keyframes cdp{0%{opacity:0;transform:scale(2.2)}30%{opacity:1;transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(.8)}}
+#gpanel{--gw:116px;--gh:110px;position:absolute;inset:0;display:none;grid-template-columns:repeat(auto-fill,minmax(var(--gw),1fr));gap:12px;padding:24px;align-content:safe center;overflow:auto;z-index:15}
+#gpanel.dn{--gw:100px;--gh:88px;gap:10px;padding:18px}#gpanel.dd{--gw:84px;--gh:72px;gap:8px;padding:14px}
+.gb{perspective:700px;height:var(--gh)}.gb.ready{cursor:pointer}.gb.ready:hover .gf{box-shadow:0 0 0 3px var(--gold),0 0 28px rgba(245,196,81,.85)}
+.gi{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,1.3,.4,1)}.gb.open .gi{transform:rotateY(180deg) scale(1.06)}
+.gf,.gk{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.gf{font-size:calc(var(--gh)*.4);background:linear-gradient(135deg,#f43f5e,#a855f7);box-shadow:0 10px 24px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.35)}.gf small{font-size:11px;font-weight:900;opacity:.85}
+.gk{transform:rotateY(180deg);background:linear-gradient(180deg,#fff,#eef2fb);color:#1e293b;font-size:12px;text-align:center;padding:4px;border:2px solid var(--gold);box-shadow:0 0 30px rgba(245,196,81,.7);line-height:1.15}
+.gav{width:46px;height:46px;border-radius:50%;border:3px solid;overflow:hidden}#gpanel.dd .gav{display:none}#gpanel.dd .gk{font-size:10px}
+#gpanel.shk .gb:not(.open) .gi{animation:gsk .15s linear infinite alternate}
+#gpanel .gb.shuffling{z-index:30;animation:gboxmove .22s ease-in-out infinite alternate;filter:brightness(1.2);}
+#gpanel .gb.shuffling .gi{animation:gboxshake .11s linear infinite alternate;transform:rotate(var(--rot,0deg)) scale(1.05);filter:brightness(1.18);}
+#gpanel .gb.shuffling .gf{filter:brightness(1.12);}
+#gpanel .gb.shuffle-return{animation:gboxreturn .58s cubic-bezier(.22,1.2,.36,1) forwards;}
+@keyframes gboxmove{from{transform:translate(var(--sx,0),var(--sy,0)) rotate(-3deg) scale(.97)}to{transform:translate(calc(var(--sx,0)*-1),calc(var(--sy,0)*-1)) rotate(3deg) scale(1.04)}}
+@keyframes gboxshake{from{transform:rotate(calc(var(--rot,0deg) - 5deg))}to{transform:rotate(calc(var(--rot,0deg) + 5deg))}}
+@keyframes gboxreturn{0%{transform:translate(var(--sx,0),var(--sy,0)) rotate(4deg) scale(1.04)}100%{transform:translate(0,0) rotate(0) scale(1)}}
+@keyframes gsk{from{transform:rotate(-6deg)}to{transform:rotate(6deg) translateY(-3px)}}
+@media(max-width:760px){#lb{right:8px;top:8px;min-width:140px;padding:8px 10px}}
 </style>
 </head>
 <body>
 <aside id="side">
- <div class="brand"><div class="logo">🎯</div><div><b>Tự động gọi tên hs</b><small>By La Minh Khánh 10A8</small></div></div>
- <div class="tabs"><button id="tc" class="tab on" onclick="setMode('call')">🧑‍🎓 Gọi tên</button><button id="tw" class="tab" onclick="setMode('wheel')">🎡 Vòng quay</button></div>
+ <div class="brand"><div class="logo">🎯</div><div><b>Tự động gọi hs</b><small>By La Minh Khánh 10A8 HBOER</small></div></div>
+ <div class="tabs" id="tabs"></div>
  <div class="scroll">
   <div id="patsec"><h3>Kiểu bay</h3><div class="g2" id="pats"></div></div>
   <div><h3>Nền sân khấu</h3><div class="g3" id="themes"></div></div>
@@ -113,7 +146,7 @@ body.wheel #wpanel{display:flex}body.wheel #nodes,body.wheel #hint,body.wheel #n
   <div class="cnt">Đang có mặt: <b id="cnt">0</b></div>
  </div>
 </aside>
-<main id="stage"><div id="ov"></div><div id="nodes"></div><div id="wpanel"><div id="ww"><div id="ptr"></div><canvas id="wc" width="1000" height="1000"></canvas></div><div id="pk"></div></div><div id="hint">ĐANG GỌI TÊN...</div><div id="nd"><div id="nda"></div><div id="ndn"></div></div></main>
+<main id="stage"><div id="ov"></div><div id="nodes"></div><div id="wpanel"><div id="ww"><div id="ptr"></div><canvas id="wc" width="1000" height="1000"></canvas></div><div id="pk"></div></div><div id="rpanel"></div><div id="gpanel"></div><div id="hint">ĐANG GỌI TÊN...</div><div id="nd"><div id="nda"></div><div id="ndn"></div></div></main>
 
 <div class="modal" id="sm"><div class="box"><button class="x" onclick="toggleSetup()">✕</button><h2>Danh sách học sinh</h2><textarea id="list"></textarea><div class="row2" style="margin-top:12px"><button class="ghost" onclick="toggleSetup()">Hủy</button><button class="ghost" style="background:var(--pri);color:#04201c" onclick="applyList()">Lưu danh sách</button></div></div></div>
 
@@ -142,11 +175,48 @@ S.win=m(new Tone.PolySynth(Tone.Synth,{oscillator:{type:'triangle'},envelope:{at
 S.heart=m(new Tone.MembraneSynth({pitchDecay:.05,octaves:4}),-2);
 S.drum=m(new Tone.MembraneSynth({pitchDecay:.02,octaves:2}),-10);au=true}
 const ok=()=>snd&&au;
-const tick=(n='E5')=>ok()&&S.tick.triggerAttackRelease(n,'32n');
-const susS=()=>ok()&&S.sus.triggerAttackRelease('A3','16n');
-const winS=()=>ok()&&S.win.triggerAttackRelease(['C4','E4','G4','C5'],'2n',Tone.now());
-const drum=()=>ok()&&S.drum.triggerAttackRelease('G1','32n');
-function heart(){if(!ok())return;const t=Tone.now();S.heart.triggerAttackRelease('C1','8n',t);S.heart.triggerAttackRelease('A0','8n',t+.17)}
+
+// Tone.js có thể ném:
+// "Start time must be strictly greater than previous start time"
+// nếu nhiều trigger xảy ra trong cùng một timestamp.
+// Luôn đẩy timestamp kế tiếp vượt timestamp trước một khoảng nhỏ.
+let audioNextTime=0;
+function safeTone(fn){
+  if(!ok())return;
+  try{fn()}catch(e){console.warn('Tone audio skipped:',e)}
+}
+const tick=(n='E5')=>safeTone(()=>{
+  const now=Tone.now();
+  const t=Math.max(now,audioNextTime+0.014);
+  audioNextTime=t;
+  S.tick.triggerAttackRelease(n,'32n',t);
+});
+const susS=()=>safeTone(()=>{
+  const now=Tone.now();
+  const t=Math.max(now,audioNextTime+0.014);
+  audioNextTime=t;
+  S.sus.triggerAttackRelease('A3','16n',t);
+});
+const winS=()=>safeTone(()=>{
+  const now=Tone.now();
+  const t=Math.max(now,audioNextTime+0.02);
+  audioNextTime=t;
+  S.win.triggerAttackRelease(['C4','E4','G4','C5'],'2n',t);
+});
+const drum=()=>safeTone(()=>{
+  const now=Tone.now();
+  const t=Math.max(now,audioNextTime+0.014);
+  audioNextTime=t;
+  S.drum.triggerAttackRelease('G1','32n',t);
+});
+function heart(){safeTone(()=>{
+  const now=Tone.now();
+  const t1=Math.max(now,audioNextTime+0.014);
+  const t2=t1+0.17;
+  audioNextTime=t2;
+  S.heart.triggerAttackRelease('C1','8n',t1);
+  S.heart.triggerAttackRelease('A0','8n',t2);
+})}
 
 // ===== AVATAR =====
 function nameSize(n){const l=n.trim().length;return l<=14?13:l<=20?12:l<=26?11:l<=34?10:l<=44?9:8}
@@ -158,9 +228,9 @@ return{c:sh[i],html:`<svg viewBox="0 0 100 100" width="100%" height="100%" style
 function toggleSetup(){const m=$('sm');if(!m.classList.contains('on'))$('list').value=all.join('\n');m.classList.toggle('on')}
 function resetList(){if(confirm('Khôi phục danh sách ban đầu?')){$('list').value=DEF;parseList()}}
 function applyList(){parseList();$('sm').classList.remove('on')}
-function parseList(){all=$('list').value.split('\n').map(s=>s.trim()).filter(Boolean);if(!all.length)return alert('Vui lòng nhập ít nhất 1 tên.');avail=[...all];updCount();renderNodes()}
+function parseList(){all=$('list').value.split('\n').map(s=>s.trim()).filter(Boolean);if(!all.length)return alert('Vui lòng nhập ít nhất 1 tên.');avail=[...all];updCount();renderNodes();refreshMode()}
 let cnt=1,picked=[];const wl=()=>avail.filter(n=>!picked.includes(n));
-function stp(d){if(calling||wSpin)return;cnt=Math.max(1,Math.min(10,avail.length||1,cnt+d));$('cn').textContent=cnt}
+function stp(d){if(calling||wSpin)return;cnt=Math.max(1,Math.min(10,avail.length||1,cnt+d));$('cn').textContent=cnt;refreshMode()}
 function updCount(){$('cnt').textContent=`${avail.length} / ${all.length}`;cnt=Math.max(1,Math.min(cnt,avail.length||1));$('cn').textContent=cnt}
 function renderNodes(){$('nodes').innerHTML='';nodes=[];
 avail.forEach(name=>{const el=document.createElement('div');el.className='card';const a=avatar(name);
@@ -223,7 +293,7 @@ await reveal(w);
 w.el.classList.remove('mystery','focus');w.el.classList.add('won');sparkle(w.el,14);await sleep(420);
 nd.classList.remove('show');await sleep(600);ov.classList.remove('on');await sleep(400);return w}
 const fastScan=(ms,pool)=>new Promise(res=>{const t0=performance.now();let last=null;(function sc(){last&&last.classList.remove('scan');const el=pool[Math.random()*pool.length|0].el;el.classList.add('scan');last=el;tick();const e=performance.now()-t0;if(e<ms)setTimeout(sc,Math.max(30,115-e/ms*88));else{last.classList.remove('scan');res()}})()});
-async function startCalling(){if(!avail.length)return alert('Đã hết học sinh!');if(mode==='wheel')return spinWheel();await Tone.start();initAudio();snd=true;calling=true;
+async function startCalling(){if(!avail.length)return alert('Đã hết học sinh!');if(mode==='wheel')return spinWheel();if(isRace())return startRace();if(mode==='gift')return startGift();await Tone.start();initAudio();snd=true;calling=true;
 const b=$('start');b.disabled=true;const K=Math.min(cnt,avail.length),done=[],fast=(+$('sl').value||5)*550;
 for(let r=0;r<K;r++){b.textContent=`⏳ ĐANG TÌM ${r+1}/${K}...`;await fastScan(r?1300:fast,nodes.filter(n=>!done.includes(n)));done.push(await finalPhase(done))}
 announce(done.map(n=>n.name))}
@@ -238,7 +308,7 @@ if(one){const a=avatar(names[0]);$('wav').style.display='';$('wav').style.border
 else{$('wav').style.display='none';$('wname').textContent='';$('wlist').innerHTML=names.map((n,i)=>`<div class="wi"><i>${i+1}</i>${n}</div>`).join('')}
 $('wn').classList.add('on')}
 function closeModal(rm){if(rm&&window.winners)avail=avail.filter(n=>!window.winners.includes(n));picked=[];$('pk').innerHTML='';
-$('wn').classList.remove('on');calling=false;const b=$('start');b.disabled=false;b.textContent=lbl();updCount();renderNodes();if(mode==='wheel')drawWheel()}
+$('wn').classList.remove('on');calling=false;const b=$('start');b.disabled=false;b.textContent=lbl();updCount();renderNodes();refreshMode()}
 
 // ===== VÒNG QUAY MAY MẮN =====
 let wAng=0,wSpin=false,blink=0;
@@ -255,10 +325,315 @@ for(let i=0;i<32;i++){const a=i/32*Math.PI*2+wAng*.2,on=(i+blink)%2===0;g.beginP
 g.shadowBlur=0;const hg=g.createRadialGradient(R-10,R-10,4,R,R,58);hg.addColorStop(0,'#fff3c4');hg.addColorStop(1,'#d9962b');
 g.beginPath();g.arc(R,R,56,0,7);g.fillStyle=hg;g.fill();g.lineWidth=6;g.strokeStyle='#fff';g.stroke();
 g.font='900 40px Nunito';g.textAlign='center';g.textBaseline='middle';g.fillStyle='#3b2400';g.fillText('★',R,R+2)}
-let mode='call';
-const lbl=()=>mode==='wheel'?'🎡 QUAY NGAY':'▶ BẮT ĐẦU GỌI';
+let mode='call',racing=false,gbusy=false,lanes=[],gboxes=[];
+const MODES=[['call','🧑‍🎓','Gọi tên','▶ BẮT ĐẦU GỌI'],['wheel','🎡','Vòng quay','🎡 QUAY NGAY'],['car','🏎️','Đua xe','🏁 XUẤT PHÁT'],['gift','🎁','Hộp quà','🎁 MỞ HỘP QUÀ']];
+const isRace=()=>mode==='car',lbl=()=>MODES.find(m=>m[0]===mode)[3];
+const esc=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+MODES.forEach(([k,e,l])=>{const b=document.createElement('button');b.id='tab-'+k;b.className='tab'+(k==='call'?' on':'');b.innerHTML=`<span>${e}</span>${l}`;b.onclick=()=>setMode(k);$('tabs').appendChild(b)});
 function layoutWheel(){const z=Math.max(200,Math.min(stage.clientWidth,stage.clientHeight)-100);$('ww').style.width=$('ww').style.height=z+'px';drawWheel()}
-function setMode(m){if(calling||wSpin)return;mode=m;document.body.classList.toggle('wheel',m==='wheel');$('tc').classList.toggle('on',m==='call');$('tw').classList.toggle('on',m==='wheel');$('start').textContent=lbl();if(m==='wheel')layoutWheel()}
+function refreshMode(){if(mode==='wheel')layoutWheel();else if(isRace())prepRace();else if(mode==='gift')prepGift()}
+function setMode(m){if(calling||wSpin||racing||gbusy)return;mode=m;const c=document.body.classList;c.remove('wheel','race','gift');if(m==='wheel')c.add('wheel');else if(isRace())c.add('race');else if(m==='gift')c.add('gift');
+MODES.forEach(x=>$('tab-'+x[0]).classList.toggle('on',x[0]===m));$('start').textContent=lbl();refreshMode()}
+
+// ===== ĐUA XE (tất cả học sinh) =====
+const carSVG=c=>`<svg viewBox="0 0 64 34"><rect x="2" y="14" width="60" height="12" rx="5" fill="${c}"/><path d="M16 14l7-9h18l8 9z" fill="${c}"/><path d="M22 13l5-6h8v6zM38 13V7h4l5 6z" fill="#cfefff"/><circle cx="16" cy="27" r="6" fill="#222"/><circle cx="48" cy="27" r="6" fill="#222"/><circle cx="16" cy="27" r="2.5" fill="#ccc"/><circle cx="48" cy="27" r="2.5" fill="#ccc"/></svg>`;
+let race=null;
+function prepRace(){if(racing)return;
+const rp=$('rpanel'),H=stage.clientHeight||600,VW=stage.clientWidth||900,N=avail.length;
+const L=Math.max(1,Math.min(N,Math.floor((H-70)/40))),laneH=Math.max(40,Math.min(72,Math.floor((H-70)/L))),cw=Math.min(60,Math.round(laneH*1.15)),ch=Math.round(cw/1.9);
+const slots=Math.ceil(N/L),GAP=Math.max(cw+16,78),S=slots*GAP+140,DIST=5200,FIN=S+DIST,W=FIN+420,roadTop=Math.round((H-L*laneH)/2),fs=laneH>=56?11:laneH>=46?10:9;
+const order=[...avail].sort(()=>Math.random()-.5);
+let h=`<div id="cd"></div><div id="lb"><h4>🏁 ${N} XE SẴN SÀNG</h4></div><div id="world" style="width:${W}px"><div id="road" style="top:${roadTop}px;height:${L*laneH}px;background-image:repeating-linear-gradient(to bottom,transparent 0 ${laneH-1}px,rgba(255,255,255,.2) ${laneH-1}px ${laneH}px)"></div>`;
+const bt=roadTop,bb=H-roadTop-L*laneH;
+for(let x=60;x<W;x+=95+Math.random()*90){if(bt>=40)h+=`<i class="tr" style="left:${x|0}px;top:${(Math.random()*(bt-34))|0}px">🌲</i>`;if(bb>=40)h+=`<i class="tr" style="left:${(x+40)|0}px;top:${(roadTop+L*laneH+8+Math.random()*(bb-34))|0}px">🌳</i>`}
+[.25,.5,.75].forEach(q=>h+=`<div class="sg" style="left:${S+DIST*q|0}px;top:${Math.max(4,roadTop-30)}px">${q*100}%</div>`);
+h+=`<div class="sl" style="left:${S}px;top:${roadTop}px;height:${L*laneH}px"></div><div class="fl" style="left:${FIN}px;top:${roadTop}px;height:${L*laneH}px"></div>`;
+order.forEach((nm,i)=>{const lane=i%L,slot=(i/L)|0,sx=S-30-cw-slot*GAP,y=roadTop+lane*laneH+laneH-ch-3;
+h+=`<div class="car" style="width:${cw}px;height:${ch}px;transform:translate(${sx}px,${y}px)">${carSVG(`hsl(${i*47%360},80%,55%)`)}<span class="tg" style="font-size:${fs}px">${esc(short(nm))}</span></div>`});
+rp.innerHTML=h+'</div>';
+const cars=order.map((nm,i)=>{const lane=i%L,slot=(i/L)|0,sx=S-30-cw-slot*GAP;return{nm,sx,x:sx,y:roadTop+lane*laneH+laneH-ch-3,p:0,v:1,t:0,done:false,stop:FIN+40+Math.random()*180,boostUntil:0,boostUsed:false,el:null,tg:null}});
+const els=rp.querySelectorAll('.car');cars.forEach((c,i)=>{c.el=els[i];c.tg=els[i].querySelector('.tg')});
+const cam=Math.max(0,Math.min(W-VW,S-VW*.62));$('world').style.transform=`translateX(${-cam}px)`;
+race={cars,S,FIN,W,VW,cam}}
+async function startRace(){
+  if(racing||!race)return;
+
+  // ĐUA XE CỐ TÌNH KHÔNG PHÁT ÂM THANH.
+  // Âm thanh của các chế độ khác vẫn giữ nguyên.
+
+  calling=true;
+  prepRace();
+  racing=true;
+
+  const b=$('start');
+  b.disabled=true;
+  b.textContent='⏳ ĐANG ĐUA...';
+
+  const cd=$('cd');
+  for(const c of['3','2','1','GO!']){
+    cd.textContent=c;
+    cd.className='';
+    void cd.offsetWidth;
+    cd.className='pop';
+    // Countdown cũng im lặng; chỉ còn rung nếu thiết bị hỗ trợ.
+    vib(c==='GO!'?60:20)
+    await sleep(c==='GO!'?500:800);
+  }
+
+  const R=race,K=Math.min(cnt,avail.length),fin=[],world=$('world'),lb=$('lb');
+  let last=performance.now(),endAt=0,lbT=0,cam=R.cam,lead=null;
+
+  // Các cú troll có chủ đích:
+  // 1) Khi cuộc đua đã gần cuối, một xe đang bị tụt có thể được "nitro".
+  // 2) Nitro đủ mạnh để nó thực sự có cơ hội cướp TOP 1.
+  // 3) Chỉ xảy ra vài lần tối đa để vẫn bất ngờ, không phá cuộc đua.
+  let trollUsed=0;
+  let nextTrollAt=performance.now()+3500;
+
+  await new Promise(res=>{
+    (function f(now){
+      const dt=Math.min(.05,Math.max(0,(now-last)/1000));
+      last=now;
+
+      let mx=-1e9,ld=null;
+
+      try{
+        R.cars.forEach(c=>{
+          if(!c.done){
+            c.t-=dt;
+
+            // Nitro đang chạy
+            if(c.boostUntil>now){
+              c.v=5.2;
+              c.t=.18;
+            }else if(c.t<=0){
+              c.v=Math.random()<.08?2.1:.55+Math.random()*1.1;
+              c.t=.4+Math.random()*.7;
+            }
+
+            c.p=Math.min(1,c.p+c.v*.062*dt);
+            c.x=c.sx+c.p*(R.FIN-c.sx);
+
+            if(c.p>=1){
+              c.done=true;
+              fin.push(c);
+
+              const r=fin.length;
+              if(r<=K){
+                c.tg.textContent=(['🥇','🥈','🥉'][r-1]||r+'.')+' '+short(c.nm);
+                c.el.classList.add('win');
+                sparkle(c.el,6);
+
+                if(r===K)endAt=now+1300;
+              }
+            }
+          }else{
+            c.x=Math.min(c.stop,c.x+220*dt);
+          }
+
+          c.el.style.transform=`translate(${c.x}px,${c.y}px)`;
+
+          if(c.x>mx){
+            mx=c.x;
+            ld=c;
+          }
+        });
+
+        // ===== TROLL OVERTAKE =====
+        // Kích hoạt khi leader đã đi khá xa (>72%) nhưng chưa cán đích.
+        if(
+          trollUsed<2 &&
+          now>=nextTrollAt &&
+          fin.length<K &&
+          ld &&
+          ld.p>=.72 &&
+          ld.p<=.93
+        ){
+          const candidates=R.cars
+            .filter(c=>!c.done && c!==ld && !c.boostUsed)
+            .sort((a,b)=>a.p-b.p);
+
+          if(candidates.length){
+            // Chọn một người đang ở giữa/cuối để cú vượt nhìn rõ hơn.
+            const idx=Math.min(
+              candidates.length-1,
+              Math.max(0,Math.floor(candidates.length*.65))
+            );
+            const troll=candidates[idx];
+
+            troll.boostUsed=true;
+            troll.boostUntil=now+1700;
+            troll.tg.textContent='🚀 TROLL! '+short(troll.nm);
+            troll.el.style.filter='drop-shadow(0 0 10px #f5c451)';
+            troll.el.style.zIndex='80';
+
+            trollUsed++;
+
+            // Tạo khoảng tăng tốc ban đầu để người xem thấy xe "vọt" lên.
+            troll.p=Math.min(0.96,troll.p+0.055);
+            troll.x=troll.sx+troll.p*(R.FIN-troll.sx);
+
+            // Không phát âm thanh trong lúc đua.
+            setTimeout(()=>sparkle(troll.el,18,280),20);
+
+            // Thông báo troll ngay trên bảng.
+            const old=lb.innerHTML;
+            lb.innerHTML='<h4>⚠️ TROLL OVERTAKE!</h4><div>🚀 '+esc(short(troll.nm))+' ĐANG VƯỢT!</div>';
+            setTimeout(()=>{
+              if(lb)lb.innerHTML=old;
+            },1200);
+
+            vib([25,20,50]);
+          }
+
+          // Lần tiếp theo chỉ có thể xảy ra sau một khoảng ngẫu nhiên.
+          nextTrollAt=now+3200+Math.random()*2800;
+        }
+
+        // Khi nitro hết thì trả xe về vận tốc bình thường.
+        R.cars.forEach(c=>{
+          if(c.boostUntil && c.boostUntil<=now && !c.done){
+            c.boostUntil=0;
+            c.el.style.filter='';
+            c.el.style.zIndex='';
+            c.tg.textContent=short(c.nm);
+          }
+        });
+
+        if(ld!==lead){
+          lead&&lead.el.classList.remove('lead');
+          if(ld){
+            ld.el.classList.add('lead');
+            lead=ld;
+          }
+        }
+
+        const tgt=Math.max(0,Math.min(R.W-R.VW,mx-R.VW*.62));
+        cam+=(tgt-cam)*Math.min(1,dt*3.5);
+        world.style.transform=`translateX(${-cam}px)`;
+
+        lbT-=dt;
+        if(lbT<=0){
+          lbT=.15;
+
+          // Xếp hạng thật theo vị trí, thay vì ghép fin + xe chưa về.
+          const ranking=[...R.cars]
+            .sort((a,b)=>{
+              if(a.done!==b.done)return a.done?-1:1;
+              if(a.done&&b.done){
+                return fin.indexOf(a)-fin.indexOf(b);
+              }
+              return b.x-a.x;
+            })
+            .slice(0,5);
+
+          lb.innerHTML='<h4>🏁 TOP 5 · '+R.cars.length+' XE</h4>'+
+            ranking.map((c,i)=>{
+              const medal=['🥇','🥈','🥉'][i]||(i+1)+'.';
+              return `<div>${medal} ${esc(short(c.nm))}</div>`;
+            }).join('');
+        }
+
+        // ĐUA XE IM LẶNG: không gọi Tone trong animation loop.
+
+        if((endAt&&now>=endAt)||fin.length===R.cars.length){
+          res();
+        }else{
+          requestAnimationFrame(f);
+        }
+
+      }catch(err){
+        // Quan trọng: lỗi ngoài dự kiến trong một frame không được làm cuộc đua "đứng hình".
+        console.error('Race frame recovered:',err);
+        if(fin.length===R.cars.length){
+          res();
+        }else{
+          requestAnimationFrame(f);
+        }
+      }
+    })(performance.now());
+  });
+
+  winS();
+  vib([40,30,80]);
+  confetti({particleCount:140,spread:90,origin:{y:.5},zIndex:500});
+  await sleep(900);
+
+  racing=false;
+  announce(fin.slice(0,K).map(c=>c.nm));
+}
+
+// ===== HỘP QUÀ: hiện tên → úp → trộn → chọn =====
+let gphase='idle',gnames=[],gauto=false;
+const gK=()=>Math.min(cnt,avail.length),gbtn=()=>$('start').textContent=`🎲 CHỌN NGẪU NHIÊN (${gnames.length}/${gK()})`;
+function renderGiftBox(g){
+ const a=avatar(g.nm);
+ g.el.querySelector('.gav').style.borderColor=a.c;
+ g.el.querySelector('.gav').innerHTML=a.html;
+ g.el.querySelector('.gk b').textContent=short(g.nm);
+}
+function prepGift(){if(gbusy)return;const gp=$('gpanel'),N=avail.length,pool=[...avail].sort(()=>Math.random()-.5);
+gp.className=N>60?'dd':N>24?'dn':'';
+// Số hộp là SỐ VỊ TRÍ CỐ ĐỊNH. Chỉ tên học sinh được xáo đổi.
+gp.innerHTML=pool.map((nm,i)=>{const a=avatar(nm);return `<div class="gb"><div class="gi"><div class="gf">🎁<small>${i+1}</small></div><div class="gk"><div class="gav" style="border-color:${a.c}">${a.html}</div><b>${esc(short(nm))}</b></div></div></div>`}).join('');
+gboxes=pool.map((nm,i)=>{const g={nm,slot:i+1,el:gp.children[i],open:false};g.el.onclick=()=>pickBox(g);return g});gphase='idle';gnames=[];gauto=false}
+async function shuffleBoxes(){
+ // HỘP THẬT SỰ DI CHUYỂN, nhưng số trên từng hộp luôn đi cùng hộp.
+ // Khi xáo xong, các hộp quay về đúng vị trí số của mình và người bên trong đã đổi.
+ if(gboxes.length<2)return;
+ const oldNames=gboxes.map(g=>g.nm);
+ let shuffled;
+ do{
+   shuffled=[...oldNames].sort(()=>Math.random()-.5);
+ }while(shuffled.some((nm,i)=>nm===oldNames[i]));
+
+ const gp=$('gpanel');
+ const first=gboxes.map(g=>({g, r:g.el.getBoundingClientRect()}));
+ const boxRect=gp.getBoundingClientRect();
+
+ // Đưa từng hộp sang một vị trí ngẫu nhiên khác trong lúc xáo.
+ gboxes.forEach((g,i)=>{
+   g.el.classList.add('shuffling');
+   const a=first[i].r;
+   const tx=(Math.random()-.5)*Math.min(150,boxRect.width*.22);
+   const ty=(Math.random()-.5)*Math.min(90,boxRect.height*.16);
+   g.el.style.setProperty('--sx',`${tx}px`);
+   g.el.style.setProperty('--sy',`${ty}px`);
+   g.el.querySelector('.gi')?.style.setProperty('--rot',`${(Math.random()-.5)*18}deg`);
+ });
+ await sleep(650);
+
+ // Đổi NGƯỜI, không đổi số hộp.
+ gboxes.forEach((g,i)=>{
+   g.nm=shuffled[i];
+   renderGiftBox(g);
+   g.open=false;
+ });
+
+ // Cho hộp chạy về vị trí ban đầu rồi mới kết thúc lượt xáo.
+ gboxes.forEach(g=>g.el.classList.add('shuffle-return'));
+ await sleep(620);
+ gboxes.forEach(g=>{
+   g.el.classList.remove('shuffling','shuffle-return');
+   g.el.style.removeProperty('--sx');
+   g.el.style.removeProperty('--sy');
+   g.el.querySelector('.gi')?.style.removeProperty('--rot');
+ });
+}
+function pickBox(g){if(gphase!=='pick'||g.open||gnames.length>=gK())return;g.open=true;g.el.classList.add('open');winS();vib(40);sparkle(g.el,12);confetti({particleCount:70,spread:70,origin:{y:.55},zIndex:500});gnames.push(g.nm);
+if(gnames.length>=gK()){gphase='done';const b=$('start');b.disabled=true;b.textContent='🎉 XONG!';gboxes.forEach(x=>x.el.classList.remove('ready'));setTimeout(()=>{gbusy=false;announce(gnames.slice())},1300)}else gbtn()}
+async function autoPick(){if(gphase!=='pick'||gauto)return;gauto=true;$('start').disabled=true;
+while(gnames.length<gK()){const rest=gboxes.filter(g=>!g.open);if(!rest.length)break;pickBox(rest[Math.random()*rest.length|0]);await sleep(850)}gauto=false}
+async function startGift(){if(gbusy){if(gphase==='pick')autoPick();return}
+await Tone.start();initAudio();snd=true;calling=true;prepGift();gbusy=true;gphase='show';
+const b=$('start'),gp=$('gpanel');b.disabled=true;
+b.textContent='👀 GHI NHỚ TÊN...';gboxes.forEach(g=>g.el.classList.add('open'));winS();
+await sleep(2600+Math.min(avail.length,100)*25);
+b.textContent='🙈 ĐANG ÚP HỘP...';gboxes.forEach(g=>g.el.classList.remove('open'));susS();await sleep(1000);
+b.textContent='🔀 ĐANG TRỘN...';gp.classList.add('shk');
+for(let r=0;r<3;r++){for(let i=0;i<5;i++){tick(['C4','E4','G4'][i%3]);await sleep(110)}await shuffleBoxes()}
+gp.classList.remove('shk');gboxes.forEach(g=>g.el.classList.add('ready'));gphase='pick';gnames=[];b.disabled=false;gbtn()}
+
 async function spinWheel(){if(wSpin||!avail.length)return;await Tone.start();initAudio();snd=true;wSpin=true;
 const b=$('start');b.disabled=true;picked=[];$('pk').innerHTML='';const K=Math.min(cnt,avail.length);
 for(let r=0;r<K;r++){b.textContent=`⏳ ĐANG QUAY ${r+1}/${K}...`;
@@ -272,7 +647,7 @@ winS();vib([40,30,80]);confetti({particleCount:90,spread:80,origin:{y:.5},zIndex
 picked.push(L[k]);$('pk').innerHTML+=`<span class="chip">${r+1}. ${short(L[k])}</span>`;await sleep(1100);drawWheel()}
 wSpin=false;calling=true;announce(picked.slice())}
 
-window.onload=()=>{$('list').value=DEF;parseList();addEventListener('resize',()=>{if(!calling)moveAll();if(mode==='wheel')layoutWheel()});startChaos();requestAnimationFrame(loop)};
+window.onload=()=>{$('list').value=DEF;parseList();addEventListener('resize',()=>{if(!calling)moveAll();if(mode==='wheel')layoutWheel();else if(mode==='car'&&!racing)prepRace()});startChaos();requestAnimationFrame(loop)};
 </script>
 </body>
 </html>
