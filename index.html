@@ -78,7 +78,7 @@ h3{margin:0 0 8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;op
 .box h2{margin:0 0 14px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);text-align:center}
 textarea{width:100%;height:240px;border-radius:14px;padding:12px;background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--ink);font:600 13px Nunito,sans-serif;resize:none}
 .x{position:absolute;top:12px;right:16px;background:none;font-size:20px;opacity:.6}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:12px 20px 0}.tab{padding:7px 2px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-weight:800;font-size:11px;line-height:1.25;transition:.2s}.tab span{display:block;font-size:18px}.tab.on{background:linear-gradient(135deg,var(--gold2),#e8912d);color:#3b2400;border-color:transparent}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:12px 20px 0}.tab{padding:7px 2px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-weight:800;font-size:11px;line-height:1.25;transition:.2s}.tab span{display:block;font-size:18px}.tab.on{background:linear-gradient(135deg,var(--gold2),#e8912d);color:#3b2400;border-color:transparent}
 #wpanel{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:15}
 #ww{position:relative;width:420px;height:420px}
 .st{width:30px;height:30px;border-radius:50%;background:var(--glass);border:1px solid var(--line);font-size:18px;font-weight:900}.st:hover{border-color:var(--gold)}
@@ -128,6 +128,34 @@ body.race #rpanel{display:block}body.gift #gpanel{display:grid}
 @keyframes gboxreturn{0%{transform:translate(var(--sx,0),var(--sy,0)) rotate(4deg) scale(1.04)}100%{transform:translate(0,0) rotate(0) scale(1)}}
 @keyframes gsk{from{transform:rotate(-6deg)}to{transform:rotate(6deg) translateY(-3px)}}
 @media(max-width:760px){#lb{right:8px;top:8px;min-width:140px;padding:8px 10px}}
+
+#teamsec,#tpanel{display:none}
+body.team #teamsec{display:block}body.team #tpanel{display:grid}
+body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntrow{display:none}
+#tpanel{position:absolute;inset:0;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;padding:22px;align-content:start;overflow:auto;z-index:15}
+.tb{border-radius:18px;background:var(--glass);border:1px solid var(--tc);overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.3),0 0 22px color-mix(in srgb,var(--tc) 25%,transparent);display:flex;flex-direction:column;align-self:start}
+.th2{display:flex;align-items:center;gap:8px;padding:10px 12px;font-weight:900;color:#fff;text-shadow:0 1px 3px #0006;background:linear-gradient(135deg,var(--tc),color-mix(in srgb,var(--tc) 50%,#000))}
+.th2 b{flex:1;font-size:14px}.th2 span{background:rgba(0,0,0,.28);padding:2px 10px;border-radius:99px;font-size:12px}
+.tm{padding:8px;display:flex;flex-direction:column;gap:5px}.ph{opacity:.4;font-size:12px;text-align:center;padding:12px;font-weight:700}
+.mb{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:10px;background:rgba(255,255,255,.08);font-weight:700;font-size:13px;animation:mbin .45s cubic-bezier(.22,1.3,.36,1)}
+.mb i{width:24px;height:24px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid}
+@keyframes mbin{from{opacity:0;transform:translateY(-16px) scale(.6)}}
+.sc{position:relative;height:var(--gh);border-radius:16px;overflow:hidden;color:#1e293b;border:1px solid rgba(255,255,255,.4);box-shadow:0 10px 24px rgba(0,0,0,.35);background:#fff}
+.su{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;font-size:12px;font-weight:800;line-height:1.1;padding:4px;background:linear-gradient(180deg,#fff,#eef2fb)}
+.su em{font-style:normal;font-size:9px;font-weight:900;opacity:.55}.sc.w .su{background:linear-gradient(180deg,#fff8dc,#ffd978)}.sc.w .su em{color:#b45309;opacity:1}
+.sav{width:42px;height:42px;border-radius:50%;border:3px solid;overflow:hidden}#gpanel.dd .sav{display:none}
+.sc canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;transition:opacity .5s}
+.sc.open.w{box-shadow:0 0 0 3px var(--gold),0 0 34px rgba(245,196,81,.95);animation:wpop .6s}.sc.zap{animation:gsk .1s linear 3 alternate}
+@keyframes wpop{40%{transform:scale(1.14)}}
+.tk{width:min(660px,100%);padding:16px;border-radius:28px;background:linear-gradient(150deg,#fff3c4,#f5c451 55%,#e8912d);box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 60px rgba(245,196,81,.35);color:#3b2400;border:2px solid #fff8}
+.tkh{text-align:center;font-weight:900;letter-spacing:.14em;font-size:clamp(14px,2.2vw,20px);margin-bottom:10px}.tkh small{display:block;letter-spacing:.04em;font-size:12px;opacity:.75;margin-top:2px}
+.tkg{position:relative;display:grid;gap:6px;padding:8px;border-radius:18px;background:rgba(255,255,255,.4);grid-auto-rows:var(--ch,84px)}
+.tc{border-radius:12px;background:#fff;color:#1e293b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:12px;line-height:1.1;text-align:center;padding:3px;overflow:hidden;transition:.3s}
+.tcav{width:36px;height:36px;border-radius:50%;border:3px solid;overflow:hidden;flex-shrink:0}
+.tc.hit{background:linear-gradient(180deg,#fff8dc,#ffd978);box-shadow:0 0 0 3px #f43f5e,0 0 24px rgba(244,63,94,.8);animation:wpop .6s;z-index:2}
+.tkg canvas{position:absolute;left:0;top:0;touch-action:none;cursor:crosshair;transition:opacity .7s;border-radius:18px}
+.tk{display:flex;flex-direction:column;flex-shrink:0}.tkh{flex-shrink:0}.tkg{flex:1;min-height:0}
+.tc{font-size:11px;gap:2px}.tc b{font-size:11px;word-break:break-word}.tcav{width:46%;max-width:38px;height:auto;aspect-ratio:1}
 </style>
 </head>
 <body>
@@ -136,8 +164,9 @@ body.race #rpanel{display:block}body.gift #gpanel{display:grid}
  <div class="tabs" id="tabs"></div>
  <div class="scroll">
   <div id="patsec"><h3>Kiểu bay</h3><div class="g2" id="pats"></div></div>
+  <div id="teamsec"><h3>Chọn team tham gia</h3><div class="g2" id="tchips"></div><div class="row2" style="margin-top:8px"><button class="ghost" onclick="toggleTeamEdit()">✏️ Sửa DS team</button><button class="ghost" onclick="copyTeams()">📋 Copy KQ</button></div><div class="cnt" id="tinfo" style="margin-top:8px"></div></div>
   <div><h3>Nền sân khấu</h3><div class="g3" id="themes"></div></div>
-  <div class="row"><span style="flex:1">Số học sinh gọi</span><button class="st" onclick="stp(-1)">−</button><b id="cn" style="min-width:20px;text-align:center;font-size:16px;color:var(--gold2)">1</b><button class="st" onclick="stp(1)">+</button></div>
+  <div class="row" id="cntrow"><span style="flex:1">Số học sinh gọi</span><button class="st" onclick="stp(-1)">−</button><b id="cn" style="min-width:20px;text-align:center;font-size:16px;color:var(--gold2)">1</b><button class="st" onclick="stp(1)">+</button></div>
   <div class="row" id="slrow"><span>Quét nhanh</span><input type="range" id="sl" min="3" max="15" value="5" oninput="sv.textContent=this.value"><b id="sv">5</b>s</div>
   <div class="row2"><button class="ghost" onclick="toggleSetup()">✏️ Sửa DS</button><button class="ghost" onclick="resetList()">↺ Đặt lại</button></div>
  </div>
@@ -146,11 +175,12 @@ body.race #rpanel{display:block}body.gift #gpanel{display:grid}
   <div class="cnt">Đang có mặt: <b id="cnt">0</b></div>
  </div>
 </aside>
-<main id="stage"><div id="ov"></div><div id="nodes"></div><div id="wpanel"><div id="ww"><div id="ptr"></div><canvas id="wc" width="1000" height="1000"></canvas></div><div id="pk"></div></div><div id="rpanel"></div><div id="gpanel"></div><div id="hint">ĐANG GỌI TÊN...</div><div id="nd"><div id="nda"></div><div id="ndn"></div></div></main>
+<main id="stage"><div id="ov"></div><div id="nodes"></div><div id="wpanel"><div id="ww"><div id="ptr"></div><canvas id="wc" width="1000" height="1000"></canvas></div><div id="pk"></div></div><div id="rpanel"></div><div id="gpanel"></div><div id="tpanel"></div><div id="hint">ĐANG GỌI TÊN...</div><div id="nd"><div id="nda"></div><div id="ndn"></div></div></main>
 
 <div class="modal" id="sm"><div class="box"><button class="x" onclick="toggleSetup()">✕</button><h2>Danh sách học sinh</h2><textarea id="list"></textarea><div class="row2" style="margin-top:12px"><button class="ghost" onclick="toggleSetup()">Hủy</button><button class="ghost" style="background:var(--pri);color:#04201c" onclick="applyList()">Lưu danh sách</button></div></div></div>
 
 
+<div class="modal" id="tmod"><div class="box"><button class="x" onclick="toggleTeamEdit()">✕</button><h2>Danh sách team</h2><textarea id="tlist" style="height:200px" placeholder="Mỗi dòng 1 team"></textarea><div class="row2" style="margin-top:12px"><button class="ghost" onclick="toggleTeamEdit()">Hủy</button><button class="ghost" style="background:var(--pri);color:#04201c" onclick="applyTeams()">Lưu team</button></div></div></div>
 <div class="modal" id="wn" style="z-index:300"><div class="box" id="wcard"><div class="crown">👑</div><h2 id="wh" style="margin:4px 0 0">Bạn được chọn là</h2><div id="wav"></div><div id="wname"></div><div id="wlist"></div><button class="wb a" onclick="closeModal(false)">Giữ lại trong danh sách</button><button class="wb b" onclick="closeModal(true)">Xóa khỏi danh sách</button></div></div>
 
 <script>
@@ -293,7 +323,7 @@ await reveal(w);
 w.el.classList.remove('mystery','focus');w.el.classList.add('won');sparkle(w.el,14);await sleep(420);
 nd.classList.remove('show');await sleep(600);ov.classList.remove('on');await sleep(400);return w}
 const fastScan=(ms,pool)=>new Promise(res=>{const t0=performance.now();let last=null;(function sc(){last&&last.classList.remove('scan');const el=pool[Math.random()*pool.length|0].el;el.classList.add('scan');last=el;tick();const e=performance.now()-t0;if(e<ms)setTimeout(sc,Math.max(30,115-e/ms*88));else{last.classList.remove('scan');res()}})()});
-async function startCalling(){if(!avail.length)return alert('Đã hết học sinh!');if(mode==='wheel')return spinWheel();if(isRace())return startRace();if(mode==='gift')return startGift();await Tone.start();initAudio();snd=true;calling=true;
+async function startCalling(){if(!avail.length)return alert('Đã hết học sinh!');if(mode==='wheel')return spinWheel();if(mode==='team')return startTeam();if(isRace())return startRace();if(mode==='gift')return startGift();await Tone.start();initAudio();snd=true;calling=true;
 const b=$('start');b.disabled=true;const K=Math.min(cnt,avail.length),done=[],fast=(+$('sl').value||5)*550;
 for(let r=0;r<K;r++){b.textContent=`⏳ ĐANG TÌM ${r+1}/${K}...`;await fastScan(r?1300:fast,nodes.filter(n=>!done.includes(n)));done.push(await finalPhase(done))}
 announce(done.map(n=>n.name))}
@@ -326,13 +356,13 @@ g.shadowBlur=0;const hg=g.createRadialGradient(R-10,R-10,4,R,R,58);hg.addColorSt
 g.beginPath();g.arc(R,R,56,0,7);g.fillStyle=hg;g.fill();g.lineWidth=6;g.strokeStyle='#fff';g.stroke();
 g.font='900 40px Nunito';g.textAlign='center';g.textBaseline='middle';g.fillStyle='#3b2400';g.fillText('★',R,R+2)}
 let mode='call',racing=false,gbusy=false,lanes=[],gboxes=[];
-const MODES=[['call','🧑‍🎓','Gọi tên','▶ BẮT ĐẦU GỌI'],['wheel','🎡','Vòng quay','🎡 QUAY NGAY'],['car','🏎️','Đua xe','🏁 XUẤT PHÁT'],['gift','🎁','Hộp quà','🎁 MỞ HỘP QUÀ']];
+const MODES=[['call','🧑‍🎓','Gọi tên','▶ BẮT ĐẦU GỌI'],['wheel','🎡','Vòng quay','🎡 QUAY NGAY'],['car','🏎️','Đua xe','🏁 XUẤT PHÁT'],['gift','🎁','Hộp quà','🎁 MỞ HỘP QUÀ'],['team','👥','Chia team','👥 CHIA TEAM']];
 const isRace=()=>mode==='car',lbl=()=>MODES.find(m=>m[0]===mode)[3];
 const esc=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 MODES.forEach(([k,e,l])=>{const b=document.createElement('button');b.id='tab-'+k;b.className='tab'+(k==='call'?' on':'');b.innerHTML=`<span>${e}</span>${l}`;b.onclick=()=>setMode(k);$('tabs').appendChild(b)});
 function layoutWheel(){const z=Math.max(200,Math.min(stage.clientWidth,stage.clientHeight)-100);$('ww').style.width=$('ww').style.height=z+'px';drawWheel()}
-function refreshMode(){if(mode==='wheel')layoutWheel();else if(isRace())prepRace();else if(mode==='gift')prepGift()}
-function setMode(m){if(calling||wSpin||racing||gbusy)return;mode=m;const c=document.body.classList;c.remove('wheel','race','gift');if(m==='wheel')c.add('wheel');else if(isRace())c.add('race');else if(m==='gift')c.add('gift');
+function refreshMode(){if(mode==='wheel')layoutWheel();else if(isRace())prepRace();else if(mode==='gift')prepGift();else if(mode==='team')prepTeam()}
+function setMode(m){if(calling||wSpin||racing||gbusy||tbusy)return;mode=m;const c=document.body.classList;c.remove('wheel','race','gift','team');if(m==='team')c.add(m);if(m==='wheel')c.add('wheel');else if(isRace())c.add('race');else if(m==='gift')c.add('gift');
 MODES.forEach(x=>$('tab-'+x[0]).classList.toggle('on',x[0]===m));$('start').textContent=lbl();refreshMode()}
 
 // ===== ĐUA XE (tất cả học sinh) =====
@@ -647,7 +677,31 @@ winS();vib([40,30,80]);confetti({particleCount:90,spread:80,origin:{y:.5},zIndex
 picked.push(L[k]);$('pk').innerHTML+=`<span class="chip">${r+1}. ${short(L[k])}</span>`;await sleep(1100);drawWheel()}
 wSpin=false;calling=true;announce(picked.slice())}
 
-window.onload=()=>{$('list').value=DEF;parseList();addEventListener('resize',()=>{if(!calling)moveAll();if(mode==='wheel')layoutWheel();else if(mode==='car'&&!racing)prepRace()});startChaos();requestAnimationFrame(loop)};
+// ===== CHIA TEAM =====
+let tbusy=false,tres=null,sc=null;
+const TPAL=['#ef4444','#3b82f6','#22c55e','#eab308','#a855f7','#f97316','#ec4899','#14b8a6'],tcol=i=>TPAL[i%8];
+let TEAMS=['Tổ 1','Tổ 2','Tổ 3'].map(n=>({n,on:true}));
+function renderTeamChips(){$('tchips').innerHTML=TEAMS.map((t,i)=>`<button class="opt${t.on?' on':''}" onclick="togTeam(${i})"><span style="width:10px;height:10px;border-radius:50%;background:${tcol(i)};flex-shrink:0"></span>${esc(t.n)}</button>`).join('')}
+function togTeam(i){if(tbusy)return;TEAMS[i].on=!TEAMS[i].on;renderTeamChips();prepTeam()}
+function toggleTeamEdit(){const m=$('tmod');if(!m.classList.contains('on'))$('tlist').value=TEAMS.map(t=>t.n).join('\n');m.classList.toggle('on')}
+function applyTeams(){if(tbusy)return;const L=[...new Set($('tlist').value.split('\n').map(x=>x.trim()).filter(Boolean))];if(!L.length)return alert('Nhập ít nhất 1 team.');
+const old=Object.fromEntries(TEAMS.map(t=>[t.n,t.on]));TEAMS=L.map(n=>({n,on:old[n]!==false}));$('tmod').classList.remove('on');renderTeamChips();prepTeam()}
+const selTeams=()=>TEAMS.map((t,i)=>({...t,c:tcol(i)})).filter(t=>t.on);
+function prepTeam(){if(tbusy)return;tres=null;const sel=selTeams(),k=sel.length;
+$('tinfo').innerHTML=k?`<b>${k}</b> team · khoảng <b>${Math.ceil(avail.length/k)}</b> bạn/team`:'Chưa chọn team nào';
+$('tpanel').innerHTML=k?sel.map(t=>`<div class="tb" style="--tc:${t.c}"><div class="th2"><span style="background:none;padding:0;font-size:20px">👥</span><b>${esc(t.n)}</b><span>0</span></div><div class="tm"><div class="ph">Chờ chia...</div></div></div>`).join(''):'<div class="ph" style="grid-column:1/-1;padding:60px">Chọn ít nhất 1 team ở thanh bên 👈</div>'}
+async function startTeam(){if(tbusy)return;const sel=selTeams(),k=sel.length;if(!k)return alert('Hãy chọn ít nhất 1 team.');
+try{await Tone.start();initAudio();snd=true}catch(e){}
+prepTeam();tbusy=true;const b=$('start');b.disabled=true;b.textContent='⏳ ĐANG CHIA...';
+const bx=[...$('tpanel').children],ord=[...avail].sort(()=>Math.random()-.5),idx=sel.map((_,i)=>i).sort(()=>Math.random()-.5),res=sel.map(()=>[]),d=Math.max(35,Math.min(260,5000/ord.length));
+bx.forEach(x=>x.querySelector('.tm').innerHTML='');susS();await sleep(500);
+for(let i=0;i<ord.length;i++){const t=idx[i%k],a=avatar(ord[i]),m=document.createElement('div');res[t].push(ord[i]);m.className='mb';m.innerHTML=`<i style="border-color:${a.c}">${a.html}</i>${esc(ord[i])}`;
+bx[t].querySelector('.tm').appendChild(m);bx[t].querySelector('.th2 span:last-child').textContent=res[t].length;bx[t].scrollIntoView({block:'nearest',behavior:'smooth'});tick(['C5','E5','G5','A5'][t%4]);sparkle(m,3,120);await sleep(d)}
+tres=sel.map((t,i)=>({t,m:res[i]}));winS();vib([40,30,80]);confetti({particleCount:150,spread:90,origin:{y:.5},zIndex:500});
+tbusy=false;b.disabled=false;b.textContent='🔄 CHIA LẠI'}
+function copyTeams(){if(!tres)return alert('Chưa chia team.');const t=tres.map(({t,m})=>`${t.n} (${m.length}):\n`+m.map(x=>'• '+x).join('\n')).join('\n\n');
+(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>alert('Đã copy kết quả!')).catch(()=>prompt('Copy thủ công:',t))}
+window.onload=()=>{renderTeamChips();$('list').value=DEF;parseList();addEventListener('resize',()=>{if(!calling)moveAll();if(mode==='wheel')layoutWheel();else if(mode==='car'&&!racing)prepRace()});startChaos();requestAnimationFrame(loop)};
 </script>
 </body>
 </html>
