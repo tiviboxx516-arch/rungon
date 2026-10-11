@@ -156,9 +156,99 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
 .tkg canvas{position:absolute;left:0;top:0;touch-action:none;cursor:crosshair;transition:opacity .7s;border-radius:18px}
 .tk{display:flex;flex-direction:column;flex-shrink:0}.tkh{flex-shrink:0}.tkg{flex:1;min-height:0}
 .tc{font-size:11px;gap:2px}.tc b{font-size:11px;word-break:break-word}.tcav{width:46%;max-width:38px;height:auto;aspect-ratio:1}
+
+/* ===== INTRO WINDOW (kiểu cửa sổ máy tính) ===== */
+#introOverlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:rgba(3,5,15,.55);backdrop-filter:blur(6px);
+  opacity:0;transition:opacity .45s ease}
+#introOverlay.show{opacity:1}
+#introOverlay.hide{opacity:0;pointer-events:none}
+
+#introWin{
+  width:min(560px,100%);max-height:calc(100vh - 48px);
+  display:flex;flex-direction:column;
+  border-radius:14px;overflow:hidden;
+  background:linear-gradient(180deg,#1b2547,#0e1430);
+  border:1px solid rgba(245,196,81,.4);
+  box-shadow:0 30px 90px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06) inset,0 0 60px rgba(245,196,81,.15);
+  transform:translateY(28px) scale(.94);opacity:0;
+  transition:transform .55s cubic-bezier(.22,1.15,.36,1),opacity .5s ease}
+#introOverlay.show #introWin{transform:translateY(0) scale(1);opacity:1}
+#introOverlay.hide #introWin{transform:translateY(-16px) scale(1.02);opacity:0}
+
+/* Thanh tiêu đề kiểu Windows */
+.iwbar{display:flex;align-items:center;gap:10px;padding:9px 12px;
+  background:linear-gradient(180deg,#2a3763,#1a2447);border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.iwbar .iwdot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.iwbar .iwdot.r{background:#ff5f57}.iwbar .iwdot.y{background:#febc2e}.iwbar .iwdot.g{background:#28c840}
+.iwbar .iwtitle{flex:1;text-align:center;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--ink);opacity:.85;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iwbar .iwclose{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  font-size:13px;line-height:1;display:grid;place-items:center;opacity:.75;transition:.2s}
+.iwbar .iwclose:hover{background:#e11d48;border-color:#e11d48;opacity:1}
+
+/* Nội dung window */
+.iwbody{padding:26px 26px 20px;overflow:auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.iwbody::-webkit-scrollbar{width:8px}.iwbody::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:8px}
+
+.ibadge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:99px;
+  background:rgba(245,196,81,.12);border:1px solid rgba(245,196,81,.5);color:var(--gold2);
+  font-weight:900;letter-spacing:.2em;font-size:10px;text-transform:uppercase}
+.ilogo{width:78px;height:78px;border-radius:24px;display:grid;place-items:center;font-size:38px;
+  background:linear-gradient(135deg,var(--gold),#e8912d);box-shadow:0 12px 38px rgba(245,196,81,.45);
+  animation:ifloat 3.2s ease-in-out infinite}
+@keyframes ifloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.iwbody h1{margin:0;font-size:clamp(20px,4.2vw,28px);font-weight:900;letter-spacing:.05em;line-height:1.25;
+  background:linear-gradient(90deg,var(--gold2),#fff,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.iwbody h2{margin:0;font-size:clamp(14px,2.4vw,17px);font-weight:800;color:var(--ink);opacity:.95}
+.iclass{font-size:clamp(12px,2vw,14px);font-weight:700;color:var(--pri);letter-spacing:.04em}
+.inote{width:100%;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.1);font-size:clamp(12px,1.7vw,13.5px);line-height:1.6;color:var(--ink);opacity:.92;text-align:left}
+.inote b{color:var(--gold2)}
+.istart{margin-top:4px;padding:13px 40px;border-radius:14px;font-weight:900;font-size:clamp(14px,2vw,16px);
+  letter-spacing:.08em;background:linear-gradient(135deg,var(--gold2),#e8912d);color:#3b2400;
+  box-shadow:0 10px 30px rgba(245,196,81,.4);transition:.22s}
+.istart:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(245,196,81,.65)}
+.isig{font-size:11px;opacity:.5;letter-spacing:.14em}
+
+@media(max-width:520px){
+  #introOverlay{padding:14px}
+  .iwbody{padding:20px 18px 16px;gap:12px}
+  .iwbar .iwtitle{font-size:11px}
+}
 </style>
 </head>
 <body>
+
+<!-- ===== INTRO WINDOW ===== -->
+<div id="introOverlay">
+  <div id="introWin">
+    <div class="iwbar">
+      <span class="iwdot r"></span>
+      <span class="iwdot y"></span>
+      <span class="iwdot g"></span>
+      <div class="iwtitle">Tự động gọi học sinh</div>
+      <button class="iwclose" onclick="enterApp()" title="Đóng">✕</button>
+    </div>
+    <div class="iwbody">
+      <div class="ilogo">🎯</div>
+      <div class="ibadge">Sản phẩm học sinh</div>
+      <h1>TỰ ĐỘNG GỌI HỌC SINH</h1>
+      <h2>Học sinh: La Minh Khánh</h2>
+      <div class="iclass">Lớp 10A8 — Trường THPT Hoành Bồ</div>
+      <div class="inote">
+        Kính gửi quý thầy cô! Phần mềm này hỗ trợ gọi học sinh ngẫu nhiên trong lớp.
+        <br><br>
+        <b>Phần mềm có thể dùng cho lớp khác</b> — thầy cô chỉ cần vào <b>"Sửa DS"</b> để đổi danh sách học sinh,
+        hoặc vào <b>"Sửa DS team"</b> để đổi danh sách tổ/team. Mọi chế độ (gọi tên, vòng quay, đua xe, hộp quà, chia team)
+        sẽ tự động cập nhật theo danh sách mới.
+      </div>
+      <button class="istart" onclick="enterApp()">▶ VÀO PHẦN MỀM</button>
+      <div class="isig">© La Minh Khánh — 10A8 — THPT Hoành Bồ</div>
+    </div>
+  </div>
+</div>
+
 <aside id="side">
  <div class="brand"><div class="logo">🎯</div><div><b>Tự động gọi hs</b><small>By La Minh Khánh 10A8 HBOER</small></div></div>
  <div class="tabs" id="tabs"></div>
@@ -177,6 +267,7 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
 </aside>
 <main id="stage"><div id="ov"></div><div id="nodes"></div><div id="wpanel"><div id="ww"><div id="ptr"></div><canvas id="wc" width="1000" height="1000"></canvas></div><div id="pk"></div></div><div id="rpanel"></div><div id="gpanel"></div><div id="tpanel"></div><div id="hint">ĐANG GỌI TÊN...</div><div id="nd"><div id="nda"></div><div id="ndn"></div></div></main>
 
+
 <div class="modal" id="sm"><div class="box"><button class="x" onclick="toggleSetup()">✕</button><h2>Danh sách học sinh</h2><textarea id="list"></textarea><div class="row2" style="margin-top:12px"><button class="ghost" onclick="toggleSetup()">Hủy</button><button class="ghost" style="background:var(--pri);color:#04201c" onclick="applyList()">Lưu danh sách</button></div></div></div>
 
 
@@ -191,6 +282,18 @@ const THEMES=[['Mặc định','linear-gradient(135deg,#111a33,#0a0f1f)'],['Cự
 let all=[],avail=[],nodes=[],calling=false,pat='chaos',chaosT=null,snd=true;
 const $=id=>document.getElementById(id),stage=$('stage'),ov=$('ov'),nd=$('nd');
 const sleep=ms=>new Promise(r=>setTimeout(r,ms)),vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+
+// ===== INTRO =====
+window.addEventListener('load',()=>{
+  // Hiện overlay nhẹ nhàng sau khi trang load
+  requestAnimationFrame(()=>{setTimeout(()=>$('introOverlay').classList.add('show'),80)});
+});
+function enterApp(){
+  const o=$('introOverlay');
+  o.classList.remove('show');
+  o.classList.add('hide');
+  setTimeout(()=>o.remove(),600);
+}
 
 // ===== UI =====
 PATS.forEach(([k,e,l],i)=>{const b=document.createElement('button');b.className='opt'+(i?'':' on');b.innerHTML=`<span>${e}</span>${l}`;b.onclick=()=>{pat=k;document.querySelectorAll('#pats .opt').forEach(x=>x.classList.remove('on'));b.classList.add('on');if(k!=='chaos'&&chaosT){clearInterval(chaosT);chaosT=null}else if(k==='chaos'&&!chaosT)startChaos();moveAll()};$('pats').appendChild(b)});
