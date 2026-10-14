@@ -82,6 +82,13 @@ textarea{width:100%;height:240px;border-radius:14px;padding:12px;background:rgba
 #wpanel{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:15}
 #ww{position:relative;width:420px;height:420px}
 .st{width:30px;height:30px;border-radius:50%;background:var(--glass);border:1px solid var(--line);font-size:18px;font-weight:900}.st:hover{border-color:var(--gold)}
+
+.class-switch{margin-top:12px;padding:11px;border:1px solid var(--line);border-radius:14px;background:var(--glass)}
+.class-switch-title{font-size:12px;font-weight:900;letter-spacing:.4px;color:var(--muted);margin-bottom:8px}
+.class-switch-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.class-btn{min-height:38px;border:1px solid var(--line);border-radius:10px;background:var(--glass);color:var(--text);font-weight:900;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.class-btn:hover{transform:translateY(-1px);border-color:var(--pri)}
+.class-btn.active{background:var(--pri);color:#04201c;border-color:var(--pri);box-shadow:0 0 0 2px color-mix(in srgb,var(--pri) 20%,transparent)}
 #wlist{max-height:46vh;overflow:auto;text-align:left;margin:10px 0}.wi{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-weight:800;margin-bottom:6px}.wi i{font-style:normal;flex-shrink:0;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),#e8912d);color:#3b2400;font-size:13px}
 #pk{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:0 12px}.chip{padding:6px 12px;border-radius:99px;background:rgba(245,196,81,.2);border:1px solid var(--gold);font-weight:800;font-size:12px;color:var(--gold2)}
 body.wheel #wpanel{display:flex}body.wheel #nodes,body.wheel #hint,body.wheel #nd,body.wheel #ov,body.wheel #patsec,body.wheel #slrow{display:none}
@@ -227,21 +234,22 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
       <span class="iwdot r"></span>
       <span class="iwdot y"></span>
       <span class="iwdot g"></span>
-      <div class="iwtitle">Tự động gọi học sinh</div>
+      <div class="iwtitle">Sản phẩm của HBOER</div>
       <button class="iwclose" onclick="enterApp()" title="Đóng">✕</button>
     </div>
     <div class="iwbody">
       <div class="ilogo">🎯</div>
-      <div class="ibadge">Sản phẩm học sinh</div>
       <h1>TỰ ĐỘNG GỌI HỌC SINH</h1>
-      <h2>Học sinh: La Minh Khánh</h2>
+      <h2> Tác giả : học sinh La Minh Khánh</h2>
       <div class="iclass">Lớp 10A8 — Trường THPT Hoành Bồ</div>
       <div class="inote">
         Kính gửi quý thầy cô! Phần mềm này hỗ trợ gọi học sinh ngẫu nhiên trong lớp.
         <br><br>
         <b>Phần mềm có thể dùng cho lớp khác</b> — thầy cô chỉ cần vào <b>"Sửa DS"</b> để đổi danh sách học sinh,
-        hoặc vào <b>"Sửa DS team"</b> để đổi danh sách tổ/team. Mọi chế độ (gọi tên, vòng quay, đua xe, hộp quà, chia team)
+        hoặc vào <b>"Sửa DS team"</b> để đổi danh sách tổ/team hoặc chọn các lớp có sẵn danh sách. Mọi chế độ (gọi tên, vòng quay, đua xe, hộp quà, chia team)
         sẽ tự động cập nhật theo danh sách mới.
+		<br><br>
+		Mọi vấn đề như lỗi, thêm danh sách, vui lòng liên hệ zalo : 0379639056 hoặc telegram : t.me/Khanh235a
       </div>
       <button class="istart" onclick="enterApp()">▶ VÀO PHẦN MỀM</button>
       <div class="isig">© La Minh Khánh — 10A8 — THPT Hoành Bồ</div>
@@ -259,6 +267,7 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
   <div class="row" id="cntrow"><span style="flex:1">Số học sinh gọi</span><button class="st" onclick="stp(-1)">−</button><b id="cn" style="min-width:20px;text-align:center;font-size:16px;color:var(--gold2)">1</b><button class="st" onclick="stp(1)">+</button></div>
   <div class="row" id="slrow"><span>Quét nhanh</span><input type="range" id="sl" min="3" max="15" value="5" oninput="sv.textContent=this.value"><b id="sv">5</b>s</div>
   <div class="row2"><button class="ghost" onclick="toggleSetup()">✏️ Sửa DS</button><button class="ghost" onclick="resetList()">↺ Đặt lại</button></div>
+  <div class="class-switch" aria-label="Chọn lớp"><div class="class-switch-title">📚 Chọn lớp</div><div class="class-switch-buttons" id="classSwitchButtons"></div></div>
  </div>
  <div class="foot">
   <button id="start" class="cta" onclick="startCalling()">▶ BẮT ĐẦU GỌI</button>
@@ -274,9 +283,46 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
 <div class="modal" id="tmod"><div class="box"><button class="x" onclick="toggleTeamEdit()">✕</button><h2>Danh sách team</h2><textarea id="tlist" style="height:200px" placeholder="Mỗi dòng 1 team"></textarea><div class="row2" style="margin-top:12px"><button class="ghost" onclick="toggleTeamEdit()">Hủy</button><button class="ghost" style="background:var(--pri);color:#04201c" onclick="applyTeams()">Lưu team</button></div></div></div>
 <div class="modal" id="wn" style="z-index:300"><div class="box" id="wcard"><div class="crown">👑</div><h2 id="wh" style="margin:4px 0 0">Bạn được chọn là</h2><div id="wav"></div><div id="wname"></div><div id="wlist"></div><button class="wb a" onclick="closeModal(false)">Giữ lại trong danh sách</button><button class="wb b" onclick="closeModal(true)">Xóa khỏi danh sách</button></div></div>
 
+<script src="config.js"></script>
 <script>
 const CW=150,CH=178,PAD=10;
-const DEF="Nguyễn Vũ Hoài An\nPHẠM BẢO AN\nĐOÀN ĐỨC ANH\nNGUYỄN NGỌC ÁNH\nPhạm Trần Chí Bảo\nPHAN NGỌC BÍCH\nNGUYỄN HOÀNG ĐẠT\nHà Minh Đức\nPHẠM MINH ĐỨC\nNGUYỄN ĐỨC GIANG\nTỐNG ĐỨC GIANG\nNguyễn Thị Minh Hà\nNguyễn Đặng Bảo Hân\nNGUYỄN ĐÌNH HIẾU\nNGUYỄN HẢI HÒA\nĐỖ DUY HOÀNG\nNGUYỄN HỮU MINH HOÀNG\nBÙI THỊ ÁNH HỒNG\nHOÀNG PHI HÙNG\nTrương Khánh Huy\nBÙI THỊ THANH HUYỀN\nCÁI HOÀNG TRÙNG KHÁNH\nĐINH XUÂN KHÁNH\nLA MINH KHÁNH\nPhạm Ngọc Khánh\nÂU THỊ MINH LUYẾN\nNguyễn Mậu Minh\nPhạm Nguyễn Lâm Minh\nVŨ HOÀNG MỸ MỸ\nHOÀNG DƯƠNG BẢO NGỌC\nCHU VĂN NHÂN\nVŨ PHAN YẾN NHI\nĐOÀN ĐỨC PHONG\nNGUYỄN QUỐC PHONG\nBÙI THỊ MAI PHƯƠNG\nLÊ CÔNG QUÂN\nPhú Mạnh Quân\nĐẶNG MAI TRANG\nTRẦN HUYỀN TRANG\nBÙI VĂN QUỐC TRUNG\nNGUYỄN TIẾN TRUNG\nTRẦN TUẤN TÚ\nNGUYỄN HOÀNG VIỆT\nBÙI HUY VŨ\nTẠ HIỀN VY";
+// Danh sách lớp được tải từ file cấu hình bên ngoài: config.js
+const CLASS_CONFIG = window.CLASS_CONFIG;
+if (!CLASS_CONFIG || !CLASS_CONFIG.classes || !CLASS_CONFIG.classes[CLASS_CONFIG.defaultClass]) {
+  throw new Error('Không đọc được config.js hoặc thiếu lớp mặc định.');
+}
+const requestedClass = (() => {
+  const q = new URLSearchParams(location.search);
+  const key = (q.get("") || q.get("class") || q.get("lop") || "").trim().toLowerCase();
+  return CLASS_CONFIG.classes[key] ? key : CLASS_CONFIG.defaultClass;
+})();
+const INITIAL_LIST = CLASS_CONFIG.classes[requestedClass].students;
+
+function switchClass(className){
+  if (!CLASS_CONFIG.classes[className]) return;
+  const target = new URL(window.location.href);
+  target.search = className === CLASS_CONFIG.defaultClass ? '' : '?=' + encodeURIComponent(className);
+  target.hash = '';
+  if (target.href !== window.location.href) window.location.href = target.href;
+}
+function updateClassSwitch(){
+  const holder = $('classSwitchButtons');
+  if (!holder) return;
+  holder.innerHTML = '';
+  Object.entries(CLASS_CONFIG.classes).forEach(([key, cfg]) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'class-btn' + (key === requestedClass ? ' active' : '');
+    btn.textContent = cfg.label || key.toUpperCase();
+    btn.setAttribute('aria-pressed', key === requestedClass ? 'true' : 'false');
+    btn.addEventListener('click', () => switchClass(key));
+    holder.appendChild(btn);
+  });
+  const label = CLASS_CONFIG.classes[requestedClass].label || requestedClass.toUpperCase();
+  const brandSmall = document.querySelector('.brand small');
+  if (brandSmall) brandSmall.textContent = 'By La Minh Khánh ' + label + ' HBOER';
+}
+
 const PATS=[['chaos','🌀','Hỗn loạn'],['spiral','🐚','Xoắn ốc'],['fire','🔥','Đốt lửa'],['wave','🌊','Sóng'],['planet','🪐','Hành tinh'],['figure8','♾️','Số 8'],['pendulum','⏱️','Con lắc'],['bubble','🫧','Bong bóng'],['heart','❤️','Trái tim'],['zigzag','⚡','Zigzag']];
 const THEMES=[['Mặc định','linear-gradient(135deg,#111a33,#0a0f1f)'],['Cực quang','linear-gradient(135deg,#ec4899,#8b5cf6)'],['Xoáy tím','linear-gradient(135deg,#3b82f6,#6366f1)'],['Lửa đêm','linear-gradient(135deg,#2a1a1a,#000)'],['Sóng tím','linear-gradient(135deg,#a855f7,#ec4899)'],['Đại dương','linear-gradient(135deg,#0f766e,#06b6d4)']];
 let all=[],avail=[],nodes=[],calling=false,pat='chaos',chaosT=null,snd=true;
@@ -359,7 +405,7 @@ return{c:sh[i],html:`<svg viewBox="0 0 100 100" width="100%" height="100%" style
 
 // ===== DANH SÁCH =====
 function toggleSetup(){const m=$('sm');if(!m.classList.contains('on'))$('list').value=all.join('\n');m.classList.toggle('on')}
-function resetList(){if(confirm('Khôi phục danh sách ban đầu?')){$('list').value=DEF;parseList()}}
+function resetList(){if(confirm('Khôi phục danh sách ban đầu?')){$('list').value=INITIAL_LIST;parseList()}}
 function applyList(){parseList();$('sm').classList.remove('on')}
 function parseList(){all=$('list').value.split('\n').map(s=>s.trim()).filter(Boolean);if(!all.length)return alert('Vui lòng nhập ít nhất 1 tên.');avail=[...all];updCount();renderNodes();refreshMode()}
 let cnt=1,picked=[];const wl=()=>avail.filter(n=>!picked.includes(n));
@@ -804,7 +850,7 @@ tres=sel.map((t,i)=>({t,m:res[i]}));winS();vib([40,30,80]);confetti({particleCou
 tbusy=false;b.disabled=false;b.textContent='🔄 CHIA LẠI'}
 function copyTeams(){if(!tres)return alert('Chưa chia team.');const t=tres.map(({t,m})=>`${t.n} (${m.length}):\n`+m.map(x=>'• '+x).join('\n')).join('\n\n');
 (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>alert('Đã copy kết quả!')).catch(()=>prompt('Copy thủ công:',t))}
-window.onload=()=>{renderTeamChips();$('list').value=DEF;parseList();addEventListener('resize',()=>{if(!calling)moveAll();if(mode==='wheel')layoutWheel();else if(mode==='car'&&!racing)prepRace()});startChaos();requestAnimationFrame(loop)};
+window.onload=()=>{updateClassSwitch();renderTeamChips();$('list').value=INITIAL_LIST;parseList();addEventListener('resize',()=>{if(!calling)moveAll();if(mode==='wheel')layoutWheel();else if(mode==='car'&&!racing)prepRace()});startChaos();requestAnimationFrame(loop)};
 </script>
 </body>
 </html>
