@@ -213,95 +213,110 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
 .tk{display:flex;flex-direction:column;flex-shrink:0}.tkh{flex-shrink:0}.tkg{flex:1;min-height:0}
 .tc{font-size:11px;gap:2px}.tc b{font-size:11px;word-break:break-word}.tcav{width:46%;max-width:38px;height:auto;aspect-ratio:1}
 
-/* ===== INTRO WINDOW (kiểu cửa sổ máy tính) ===== */
-#introOverlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;
-  background:rgba(3,5,15,.55);backdrop-filter:blur(6px);
+/* ===== INTRO WINDOW (Theme Chúc Mừng 20-10 Ngày Phụ Nữ Việt Nam) ===== */
+#introOverlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:radial-gradient(circle at center, rgba(30,10,25,.75), rgba(5,2,10,.88));backdrop-filter:blur(10px);
   opacity:0;transition:opacity .45s ease}
 #introOverlay.show{opacity:1}
 #introOverlay.hide{opacity:0;pointer-events:none}
 
 #introWin{
-  width:min(560px,100%);max-height:calc(100vh - 48px);
+  width:min(580px,100%);max-height:calc(100vh - 40px);
   display:flex;flex-direction:column;
-  border-radius:14px;overflow:hidden;
-  background:linear-gradient(180deg,#1b2547,#0e1430);
-  border:1px solid rgba(245,196,81,.4);
-  box-shadow:0 30px 90px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06) inset,0 0 60px rgba(245,196,81,.15);
+  border-radius:22px;overflow:hidden;
+  background:linear-gradient(165deg,#2e0821 0%,#180518 50%,#0c0212 100%);
+  border:1.5px solid rgba(244,114,182,.5);
+  box-shadow:0 30px 90px rgba(0,0,0,.85),0 0 0 1px rgba(255,182,193,.15) inset,0 0 70px rgba(244,63,94,.35);
   transform:translateY(28px) scale(.94);opacity:0;
-  transition:transform .55s cubic-bezier(.22,1.15,.36,1),opacity .5s ease}
+  transition:transform .55s cubic-bezier(.22,1.15,.36,1),opacity .5s ease;
+  position:relative}
 #introOverlay.show #introWin{transform:translateY(0) scale(1);opacity:1}
 #introOverlay.hide #introWin{transform:translateY(-16px) scale(1.02);opacity:0}
 
-/* Thanh tiêu đề kiểu Windows */
-.iwbar{display:flex;align-items:center;gap:10px;padding:9px 12px;
-  background:linear-gradient(180deg,#2a3763,#1a2447);border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+/* Hoa rơi trang trí 20-10 */
+#introWin::before{content:"🌸 💐 🌺 🌷";position:absolute;top:10px;right:46px;font-size:16px;letter-spacing:6px;opacity:.7;pointer-events:none}
+
+/* Thanh tiêu đề kiểu Windows hồng ngọt ngào */
+.iwbar{display:flex;align-items:center;gap:10px;padding:10px 14px;
+  background:linear-gradient(90deg,#4a0e35,#2d0822);border-bottom:1px solid rgba(244,114,182,.2);flex-shrink:0}
 .iwbar .iwdot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.iwbar .iwdot.r{background:#ff5f57}.iwbar .iwdot.y{background:#febc2e}.iwbar .iwdot.g{background:#28c840}
-.iwbar .iwtitle{flex:1;text-align:center;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--ink);opacity:.85;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.iwbar .iwclose{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  font-size:13px;line-height:1;display:grid;place-items:center;opacity:.75;transition:.2s}
-.iwbar .iwclose:hover{background:#e11d48;border-color:#e11d48;opacity:1}
+.iwbar .iwdot.r{background:#ff4d8d}.iwbar .iwdot.y{background:#f59e0b}.iwbar .iwdot.g{background:#10b981}
+.iwbar .iwtitle{flex:1;text-align:center;font-size:12px;font-weight:900;letter-spacing:.14em;color:#fbcfe8;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}
+.iwbar .iwclose{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  font-size:13px;line-height:1;display:grid;place-items:center;color:#fbcfe8;transition:.2s;cursor:pointer}
+.iwbar .iwclose:hover{background:#f43f5e;border-color:#f43f5e;color:#fff}
 
-/* Nội dung window */
-.iwbody{padding:26px 26px 20px;overflow:auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
-.iwbody::-webkit-scrollbar{width:8px}.iwbody::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:8px}
+/* Nội dung window 20-10 */
+.iwbody{padding:24px 24px 20px;overflow:auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:13px}
+.iwbody::-webkit-scrollbar{width:8px}.iwbody::-webkit-scrollbar-thumb{background:rgba(244,114,182,.3);border-radius:8px}
 
-.ibadge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:99px;
-  background:rgba(245,196,81,.12);border:1px solid rgba(245,196,81,.5);color:var(--gold2);
-  font-weight:900;letter-spacing:.2em;font-size:10px;text-transform:uppercase}
-.ilogo{width:78px;height:78px;border-radius:24px;display:grid;place-items:center;font-size:38px;
-  background:linear-gradient(135deg,var(--gold),#e8912d);box-shadow:0 12px 38px rgba(245,196,81,.45);
-  animation:ifloat 3.2s ease-in-out infinite}
-@keyframes ifloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.iwbody h1{margin:0;font-size:clamp(20px,4.2vw,28px);font-weight:900;letter-spacing:.05em;line-height:1.25;
-  background:linear-gradient(90deg,var(--gold2),#fff,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.iwbody h2{margin:0;font-size:clamp(14px,2.4vw,17px);font-weight:800;color:var(--ink);opacity:.95}
-.iclass{font-size:clamp(12px,2vw,14px);font-weight:700;color:var(--pri);letter-spacing:.04em}
-.inote{width:100%;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.1);font-size:clamp(12px,1.7vw,13.5px);line-height:1.6;color:var(--ink);opacity:.92;text-align:left}
-.inote b{color:var(--gold2)}
-.istart{margin-top:4px;padding:13px 40px;border-radius:14px;font-weight:900;font-size:clamp(14px,2vw,16px);
-  letter-spacing:.08em;background:linear-gradient(135deg,var(--gold2),#e8912d);color:#3b2400;
-  box-shadow:0 10px 30px rgba(245,196,81,.4);transition:.22s}
-.istart:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(245,196,81,.65)}
-.isig{font-size:11px;opacity:.5;letter-spacing:.14em}
+.ibadge-2010{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:99px;
+  background:linear-gradient(90deg,rgba(244,63,94,.25),rgba(236,72,153,.25));border:1.5px solid #f472b6;color:#fdf2f8;
+  font-weight:900;letter-spacing:.22em;font-size:11px;text-transform:uppercase;box-shadow:0 0 20px rgba(244,63,94,.35)}
+.ilogo-2010{width:82px;height:82px;border-radius:28px;display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#f43f5e,#ec4899 50%,#fb7185);box-shadow:0 12px 38px rgba(244,63,94,.5),0 0 45px rgba(236,72,153,.4);
+  animation:ifloat 3.2s ease-in-out infinite;border:2px solid rgba(255,255,255,.5)}
+@keyframes ifloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}
+
+.iwbody h1{margin:0;font-size:clamp(22px,4.5vw,29px);font-weight:900;letter-spacing:.04em;line-height:1.2;
+  background:linear-gradient(90deg,#fed7aa,#f472b6,#fed7aa);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 30px rgba(244,114,182,.4)}
+.iwbody h2{margin:0;font-size:clamp(13px,2.2vw,15.5px);font-weight:800;color:#fce7f3;opacity:.95}
+.iclass{font-size:clamp(12px,1.9vw,13.5px);font-weight:800;color:#38bdf8;letter-spacing:.06em}
+
+.iwish-2010{width:100%;padding:14px 16px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(244,63,94,.12),rgba(168,85,247,.12));
+  border:1.5px solid rgba(244,114,182,.35);font-size:clamp(12px,1.7vw,13.5px);line-height:1.65;color:#fdf2f8;text-align:center;
+  box-shadow:inset 0 0 25px rgba(244,63,94,.1)}
+.iwish-2010 b{color:#fbcfe8;font-weight:900}
+
+.inote{width:100%;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);font-size:clamp(11.5px,1.6vw,12.5px);line-height:1.6;color:#e2e8f0;opacity:.9;text-align:left}
+.inote b{color:#fed7aa}
+
+.istart-2010{margin-top:4px;padding:14px 44px;border-radius:16px;font-weight:900;font-size:clamp(14px,2vw,16px);
+  letter-spacing:.1em;background:linear-gradient(135deg,#f43f5e,#ec4899 50%,#d946ef);color:#fff;
+  box-shadow:0 10px 30px rgba(244,63,94,.5),0 0 25px rgba(236,72,153,.35);transition:.22s;border:1px solid rgba(255,255,255,.3);cursor:pointer}
+.istart-2010:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 14px 40px rgba(244,63,94,.75)}
+.isig{font-size:11px;opacity:.55;letter-spacing:.14em;color:#fbcfe8}
 
 @media(max-width:520px){
-  #introOverlay{padding:14px}
-  .iwbody{padding:20px 18px 16px;gap:12px}
+  #introOverlay{padding:12px}
+  .iwbody{padding:18px 16px 14px;gap:10px}
   .iwbar .iwtitle{font-size:11px}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== INTRO WINDOW ===== -->
+<!-- ===== INTRO WINDOW (Theme 20-10) ===== -->
 <div id="introOverlay">
   <div id="introWin">
     <div class="iwbar">
       <span class="iwdot r"></span>
       <span class="iwdot y"></span>
       <span class="iwdot g"></span>
-      <div class="iwtitle">Sản phẩm của HBOER</div>
+      <div class="iwtitle">🌸 CHÀO MỪNG NGÀY PHỤ NỮ VIỆT NAM 20-10 🌸</div>
       <button class="iwclose" onclick="enterApp()" title="Đóng">✕</button>
     </div>
     <div class="iwbody">
-      <div class="ilogo">🎯</div>
-      <h1>TỰ ĐỘNG GỌI HỌC SINH</h1>
-      <h2> Tác giả : học sinh La Minh Khánh</h2>
-      <div class="iclass">Lớp 10A8 — Trường THPT Hoành Bồ</div>
-      <div class="inote">
-        Kính gửi quý thầy cô! Phần mềm này hỗ trợ gọi học sinh ngẫu nhiên trong lớp.
-        <br><br>
-        <b>Phần mềm có thể dùng cho lớp khác</b> — thầy cô chỉ cần vào <b>"Sửa DS"</b> để đổi danh sách học sinh,
-        hoặc vào <b>"Sửa DS team"</b> để đổi danh sách tổ/team hoặc chọn các lớp có sẵn danh sách. Mọi chế độ (gọi tên, vòng quay, đua xe, hộp quà, chia team)
-        sẽ tự động cập nhật theo danh sách mới.
-		<br><br>
-		Mọi vấn đề như lỗi, thêm danh sách, vui lòng liên hệ zalo : 0379639056 hoặc telegram : t.me/Khanh235a
+      <div class="ibadge-2010">🌷 SPECIAL EDITION · 20 - 10 🌷</div>
+      <div class="ilogo-2010">💐</div>
+      <h1>CHÚC MỪNG NGÀY 20 - 10</h1>
+      <h2>Kính chúc Quý Cô Giáo & Các Bạn Nữ Luôn Xinh Đẹp, Hạnh Phúc!</h2>
+      <div class="iclass">Lớp 10A8 — Trường THPT Hoành Bồ · Tác giả: La Minh Khánh</div>
+      
+      <div class="iwish-2010">
+        💖 Nhân ngày <b>Phụ Nữ Việt Nam 20/10</b>, kính chúc các cô giáo luôn tràn ngập niềm vui, nhiệt huyết và hạnh phúc; chúc các bạn nữ lớp mình luôn rạng rỡ, học giỏi và luôn là những bông hoa tươi thắm nhất! 🌹✨
       </div>
-      <button class="istart" onclick="enterApp()">▶ VÀO PHẦN MỀM</button>
-      <div class="isig">© La Minh Khánh — 10A8 — THPT Hoành Bồ</div>
+
+      <div class="inote">
+        <b>💡 Hướng dẫn sử dụng:</b> Thầy cô và các bạn có thể bấm <b>"Sửa DS"</b> để đổi danh sách học sinh, hoặc bấm <b>"Chọn lớp"</b> để chuyển nhanh giữa các lớp. Mọi chế độ <i>(Quay xổ số 🎱, Vòng quay 🎡, Gọi tên 🧑‍🎓, Đua xe 🏎️, Hộp quà 🎁, Chia team 👥)</i> đều tự động cập nhật!
+		<br><br>
+		Mọi góp ý / hỗ trợ: Zalo <b>0379639056</b> hoặc Telegram: <b>t.me/Khanh235a</b>
+      </div>
+      <button class="istart-2010" onclick="enterApp()">🌸 BẮT ĐẦU NGAY 🌸</button>
+      <div class="isig">© La Minh Khánh — 10A8 — THPT Hoành Bồ · 20/10 Edition</div>
     </div>
   </div>
 </div>
@@ -409,7 +424,7 @@ function updateClassSwitch(){
   });
   const label = CLASS_CONFIG.classes[requestedClass].label || requestedClass.toUpperCase();
   const brandSmall = document.querySelector('.brand small');
-  if (brandSmall) brandSmall.textContent = 'By La Minh Khánh ' + label + ' HBOER';
+  if (brandSmall) brandSmall.textContent = 'By La Minh Khánh - 10A8 - HBOER';
 }
 
 const PATS=[['chaos','🌀','Hỗn loạn'],['spiral','🐚','Xoắn ốc'],['fire','🔥','Đốt lửa'],['wave','🌊','Sóng'],['planet','🪐','Hành tinh'],['figure8','♾️','Số 8'],['pendulum','⏱️','Con lắc'],['bubble','🫧','Bong bóng'],['heart','❤️','Trái tim'],['zigzag','⚡','Zigzag']];
