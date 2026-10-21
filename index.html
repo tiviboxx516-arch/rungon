@@ -39,7 +39,7 @@ h3{margin:0 0 8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;op
 #stage{flex:1;position:relative;overflow:hidden;background:linear-gradient(135deg,#111a33,#0a0f1f);transition:background .5s}
 #stage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 15%,rgba(245,196,81,.08),transparent 40%),radial-gradient(circle at 85% 90%,rgba(45,212,191,.08),transparent 45%);pointer-events:none}
 #nodes{position:absolute;inset:0;z-index:10}
-.card{position:absolute;width:150px;height:178px;border-radius:16px;background:linear-gradient(180deg,#fff,#eef2fb);color:#1e293b;display:flex;flex-direction:column;align-items:center;padding:12px 8px;box-shadow:0 10px 26px rgba(0,0,0,.3);transition:left 2s ease-in-out,top 2s ease-in-out,transform .3s;user-select:none;overflow:hidden;border:1px solid rgba(255,255,255,.6);will-change:left,top;contain:layout style}
+.card{position:absolute;width:150px;height:178px;border-radius:16px;background:linear-gradient(180deg,#fff,#eef2fb);color:#1e293b;display:flex;flex-direction:column;align-items:center;padding:12px 8px;box-shadow:0 10px 26px rgba(0,0,0,.3);transition:none;user-select:none;overflow:hidden;border:1px solid rgba(255,255,255,.6);will-change:left,top;contain:layout style}
 .av{width:72px;height:72px;border-radius:50%;padding:2px;border:3px solid;margin-bottom:8px;flex-shrink:0}
 .av>div{width:100%;height:100%;border-radius:50%;overflow:hidden}
 .nm{font-weight:800;text-align:center;line-height:1.15;word-break:break-word;width:100%;padding:0 3px}
@@ -300,7 +300,7 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
       <button class="iwclose" onclick="enterApp()" title="Đóng">✕</button>
     </div>
     <div class="iwbody">
-      
+      <div class="ibadge-2010">🌷 SPECIAL EDITION · 20 - 10 🌷</div>
       <div class="ilogo-2010">💐</div>
       <h1>CHÚC MỪNG NGÀY 20 - 10</h1>
       <h2>Kính chúc Quý Cô Giáo & Các Bạn Nữ Luôn Xinh Đẹp, Hạnh Phúc!</h2>
@@ -447,7 +447,7 @@ function enterApp(){
 }
 
 // ===== UI =====
-PATS.forEach(([k,e,l],i)=>{const b=document.createElement('button');b.className='opt'+(i?'':' on');b.innerHTML=`<span>${e}</span>${l}`;b.onclick=()=>{pat=k;document.querySelectorAll('#pats .opt').forEach(x=>x.classList.remove('on'));b.classList.add('on');if(k!=='chaos'&&chaosT){clearInterval(chaosT);chaosT=null}else if(k==='chaos'&&!chaosT)startChaos();moveAll()};$('pats').appendChild(b)});
+PATS.forEach(([k,e,l],i)=>{const b=document.createElement('button');b.className='opt'+(i?'':' on');b.innerHTML=`<span>${e}</span>${l}`;b.onclick=()=>{pat=k;document.querySelectorAll('#pats .opt').forEach(x=>x.classList.remove('on'));b.classList.add('on');if(k!=='chaos'&&chaosT){clearInterval(chaosT);chaosT=null}else if(k==='chaos'&&!chaosT)startChaos();if(k!=='chaos'){nodes.forEach(n=>{n.el.style.transition='left .65s cubic-bezier(.25,1,.5,1),top .65s cubic-bezier(.25,1,.5,1)';});setTimeout(()=>{if(pat!=='chaos'){nodes.forEach(n=>{n.el.style.transition='none'});}},700);}moveAll()};$('pats').appendChild(b)});
 THEMES.forEach(([l,bg],i)=>{const b=document.createElement('button');b.className='th'+(i?'':' on');b.style.background=bg;b.textContent=l;b.onclick=()=>{stage.style.background=bg;document.querySelectorAll('.th').forEach(x=>x.classList.remove('on'));b.classList.add('on')};$('themes').appendChild(b)});
 
 // ===== ÂM THANH XỔ SỐ & HIỆU ỨNG TƯNG TƯNG HOÀN HẢO =====
@@ -653,24 +653,127 @@ function updCount(){$('cnt').textContent=`${avail.length} / ${all.length}`;cnt=M
 function renderNodes(){$('nodes').innerHTML='';nodes=[];
 avail.forEach(name=>{const el=document.createElement('div');el.className='card';const a=avatar(name);
 el.innerHTML=`<div class="av" style="border-color:${a.c}"><div>${a.html}</div></div><div class="nm" style="font-size:${nameSize(name)}px">${name}</div>`;
-el.style.left=PAD+Math.random()*Math.max(0,stage.clientWidth-CW-PAD*2)+'px';el.style.top=PAD+Math.random()*Math.max(0,stage.clientHeight-CH-PAD*2)+'px';
-$('nodes').appendChild(el);nodes.push({el,name})});moveAll()}
+  el.style.left=PAD+Math.random()*Math.max(0,stage.clientWidth-CW-PAD*2)+'px';el.style.top=PAD+Math.random()*Math.max(0,stage.clientHeight-CH-PAD*2)+'px';
+  $('nodes').appendChild(el);nodes.push({el,name})});moveAll()}
 
 // ===== KIỂU BAY =====
-function pos(i,n,t){const w=stage.clientWidth,h=stage.clientHeight,cx=w/2-CW/2,cy=h/2-CH/2;let x=cx,y=cy;
-switch(pat){
-case'spiral':{const a=i*.8+t*.0005,r=50+i*10;x=cx+Math.cos(a)*r;y=cy+Math.sin(a)*r;break}
-case'wave':x=w/(n+1)*(i+1)-CW/2;y=cy+Math.sin(x*.01+t*.002)*120;break;
-case'planet':{const a=i/n*Math.PI*2+t*.001;x=cx+Math.cos(a)*w*.35;y=cy+Math.sin(a)*h*.35;break}
-case'heart':{const a=i/n*Math.PI*2+t*.001,s=Math.min(w,h)*.015;x=cx+16*Math.pow(Math.sin(a),3)*s;y=cy-(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))*s;break}
-case'zigzag':x=w/6*(i%5+1)-CW/2+Math.sin(t*.002+Math.floor(i/5))*40;y=h/4+Math.floor(i/5)*100;break;
-case'fire':{const a=i+t*.002;x=cx+Math.cos(a)*(Math.random()*40+40);y=cy+Math.sin(a)*150-(t%2000)/10;if(y<-CH)y=h;break}
-case'figure8':{const a=i/n*Math.PI*2+t*.001,r=w*.25,d=Math.pow(Math.sin(a),2)+1;x=cx+r*Math.SQRT2*Math.cos(a)/d;y=cy+r*Math.SQRT2*Math.cos(a)*Math.sin(a)/d;break}
-case'pendulum':{const a=Math.sin(t*.002+i*.5)*Math.PI/3;x=cx+Math.sin(a)*h*.5;y=50+Math.cos(a)*h*.5;break}
-case'bubble':x=cx+Math.sin(t*.001+i)*w/3;y=cy+Math.cos(t*.0013+i*2)*h/3;break}
-return{x:Math.max(PAD,Math.min(x,w-CW-PAD)),y:Math.max(PAD,Math.min(y,h-CH-PAD))}}
+function pos(i,n,t){
+  const w=stage.clientWidth,h=stage.clientHeight;
+  const cx=Math.max(PAD, (w-CW)/2), cy=Math.max(PAD, (h-CH)/2);
+  const maxSpanX=Math.max(40, cx-PAD), maxSpanY=Math.max(40, cy-PAD);
+  let x=cx,y=cy;
+  const time = t * 0.001; // giay
+
+  switch(pat){
+    case'figure8':{
+      // Duong so 8 (Lemniscate of Bernoulli) chuan toan hoc nam gon giua san khau
+      const a = (i / n) * Math.PI * 2 + time * 0.45;
+      const rx = maxSpanX * 0.94;
+      const ry = maxSpanY * 1.6;
+      const den = 1 + Math.sin(a) * Math.sin(a);
+      x = cx + (rx * Math.cos(a)) / den;
+      y = cy + (ry * Math.sin(a) * Math.cos(a)) / den;
+      break;
+    }
+    case'pendulum':{
+      // Con lac dao dong con lac don: day va qua lac ro rang, khong bi tran man hinh
+      const maxAngle = 0.52;
+      const currentAngle = Math.sin(time * 1.6) * maxAngle;
+      const armLen = Math.max(100, (h - CH - PAD * 2) * 0.72);
+      const isBob = i >= Math.floor(n * 0.65);
+      if(!isBob){
+        const frac = (i + 1) / (Math.floor(n * 0.65) + 1);
+        const d = PAD + frac * armLen;
+        x = cx + Math.sin(currentAngle) * d;
+        y = PAD + Math.cos(currentAngle) * d;
+      } else {
+        const bobIdx = i - Math.floor(n * 0.65);
+        const bobCount = n - Math.floor(n * 0.65);
+        const bobAngle = (bobIdx / bobCount) * Math.PI * 2 + time * 0.5;
+        const bobRadius = 38;
+        const bobCenterDist = PAD + armLen + 30;
+        const bobCx = cx + Math.sin(currentAngle) * bobCenterDist;
+        const bobCy = PAD + Math.cos(currentAngle) * bobCenterDist;
+        x = bobCx + Math.cos(bobAngle) * bobRadius;
+        y = bobCy + Math.sin(bobAngle) * bobRadius;
+      }
+      break;
+    }
+    case'heart':{
+      // Duong trai tim toan hoc can xung tuyet doi khong lech goc
+      const a = (i / n) * Math.PI * 2 + time * 0.35;
+      const heartScale = Math.min(maxSpanX / 16.5, maxSpanY / 17.5);
+      x = cx + 16 * Math.pow(Math.sin(a), 3) * heartScale;
+      y = (cy - 5) - (13 * Math.cos(a) - 5 * Math.cos(2 * a) - 2 * Math.cos(3 * a) - Math.cos(4 * a)) * heartScale;
+      break;
+    }
+    case'spiral':{
+      // Xoan oc Archimedes xoay deu quanh tam
+      const a = (i / n) * Math.PI * 4 + time * 0.5;
+      const maxR = Math.min(maxSpanX * 0.95, maxSpanY * 0.95);
+      const r = 25 + (i / n) * (maxR - 25);
+      x = cx + Math.cos(a) * r;
+      y = cy + Math.sin(a) * r;
+      break;
+    }
+    case'planet':{
+      // Vong quy dao elip hanh tinh quanh tam vu tru
+      const a = (i / n) * Math.PI * 2 + time * 0.4;
+      const rx = maxSpanX * 0.94;
+      const ry = maxSpanY * 0.75;
+      x = cx + Math.cos(a) * rx;
+      y = cy + Math.sin(a) * ry;
+      break;
+    }
+    case'wave':{
+      // Song dat dao uon luon deu qua man hinh
+      const stepX = (w - CW - PAD * 2) / (n + 1);
+      x = PAD + stepX * (i + 1);
+      const wavePhase = (x / (w || 1)) * Math.PI * 3 + time * 2.2;
+      y = cy + Math.sin(wavePhase) * (maxSpanY * 0.85);
+      break;
+    }
+    case'zigzag':{
+      // Hang loi Zigzag luon song ziczac dep mat
+      const cols = 5;
+      const maxRows = Math.ceil(n / cols);
+      const cellW = (w - CW - PAD * 2 - 40) / (cols - 1 || 1);
+      const cellH = (h - CH - PAD * 2) / (maxRows - 1 || 1);
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const wave = Math.sin(time * 2 + row * 0.8) * 18;
+      x = PAD + 20 + col * cellW + wave;
+      y = PAD + row * cellH;
+      break;
+    }
+    case'bubble':{
+      // Bong bong lo lung em diu
+      const a = (i / n) * Math.PI * 2;
+      const rx = maxSpanX * 0.85;
+      const ry = maxSpanY * 0.85;
+      x = cx + Math.cos(a + time * 0.3) * rx + Math.sin(time * 1.2 + i) * 20;
+      y = cy + Math.sin(a + time * 0.35) * ry + Math.cos(time * 1.5 + i) * 20;
+      break;
+    }
+    case'fire':{
+      // Dom lua bap bung bay len
+      const flameW = maxSpanX * 0.5;
+      const progress = ((time * 0.2 + (i / n)) % 1);
+      const flameShape = 1 - progress;
+      x = cx + Math.sin((i / n) * Math.PI * 4 + time * 2.5) * (flameW * flameShape);
+      y = (h - CH - PAD) - progress * (h - CH - PAD * 2);
+      break;
+    }
+  }
+
+  return {
+    x: Math.max(PAD, Math.min(x, w - CW - PAD)),
+    y: Math.max(PAD, Math.min(y, h - CH - PAD))
+  };
+}
+
 function loop(t){
-  if(mode==='call'&&!calling&&pat!=='chaos'){
+  if(mode==='call' && !calling && pat!=='chaos'){
     const len=nodes.length;
     for(let i=0;i<len;i++){
       const p=pos(i,len,t);
@@ -680,6 +783,7 @@ function loop(t){
   }
   requestAnimationFrame(loop);
 }
+
 function moveAll(){
   if(mode!=='call'||pat!=='chaos')return;
   const mx=Math.max(0,stage.clientWidth-CW-PAD*2),my=Math.max(0,stage.clientHeight-CH-PAD*2);
@@ -691,7 +795,13 @@ function moveAll(){
     }
   });
 }
-function startChaos(){clearInterval(chaosT);chaosT=setInterval(()=>{if(!calling&&mode==='call'&&pat==='chaos')moveAll()},2000)}
+
+function startChaos(){
+  clearInterval(chaosT);
+  chaosT=setInterval(()=>{
+    if(!calling&&mode==='call'&&pat==='chaos')moveAll();
+  },2000);
+}
 
 // ===== HIỆU ỨNG =====
 function sparkle(el,n=8,spread=180,box){
