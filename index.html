@@ -329,7 +329,7 @@ body.team :is(#nodes,#hint,#nd,#ov,#patsec,#slrow){display:none}body.team #cntro
   <div id="teamsec"><h3>Chọn team tham gia</h3><div class="g2" id="tchips"></div><div class="row2" style="margin-top:8px"><button class="ghost" onclick="toggleTeamEdit()">✏️ Sửa DS team</button><button class="ghost" onclick="copyTeams()">📋 Copy KQ</button></div><div class="cnt" id="tinfo" style="margin-top:8px"></div></div>
   <div><h3>Nền sân khấu</h3><div class="g3" id="themes"></div></div>
   <div class="row" id="cntrow"><span style="flex:1">Số học sinh gọi</span><button class="st" onclick="stp(-1)">−</button><b id="cn" style="min-width:20px;text-align:center;font-size:16px;color:var(--gold2)">1</b><button class="st" onclick="stp(1)">+</button></div>
-  <div class="row" id="slrow"><span>⏱️ Thời gian quay</span><input type="range" id="sl" min="5" max="60" value="20" oninput="sv.textContent=this.value"><b id="sv">20</b>s</div>
+  <div class="row" id="slrow"><span>⏱️ Thời gian quay</span><input type="range" id="sl" min="5" max="60" value="12" oninput="sv.textContent=this.value"><b id="sv">20</b>s</div>
   <div class="row" id="sndrow"><span style="flex:1">🎵 Nhạc xổ số</span><button class="ghost" id="sndBtn" onclick="toggleSound()" style="flex:none;padding:5px 12px;font-size:12px;color:var(--gold2);min-width:76px">🔊 BẬT</button></div>
   <div class="row2"><button class="ghost" onclick="toggleSetup()">✏️ Sửa DS</button><button class="ghost" onclick="resetList()">↺ Đặt lại</button></div>
   <div class="class-switch" aria-label="Chọn lớp"><div class="class-switch-title">📚 Chọn lớp</div><div class="class-switch-buttons" id="classSwitchButtons"></div></div>
